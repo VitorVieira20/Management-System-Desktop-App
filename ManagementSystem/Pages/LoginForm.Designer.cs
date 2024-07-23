@@ -53,7 +53,7 @@ namespace ManagementSystem.Pages
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
@@ -74,15 +74,15 @@ namespace ManagementSystem.Pages
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(229, 19);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Employee Management System";
+            this.label6.Text = "Store Management System";
             // 
             // login_signupBtn
             // 
-            this.login_signupBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            this.login_signupBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.login_signupBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.login_signupBtn.FlatAppearance.BorderSize = 0;
-            this.login_signupBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Purple;
-            this.login_signupBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Purple;
+            this.login_signupBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.login_signupBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
             this.login_signupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_signupBtn.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_signupBtn.ForeColor = System.Drawing.Color.White;
@@ -90,7 +90,7 @@ namespace ManagementSystem.Pages
             this.login_signupBtn.Name = "login_signupBtn";
             this.login_signupBtn.Size = new System.Drawing.Size(226, 31);
             this.login_signupBtn.TabIndex = 1;
-            this.login_signupBtn.Text = "SIGNUP";
+            this.login_signupBtn.Text = "SIGN UP";
             this.login_signupBtn.UseVisualStyleBackColor = false;
             this.login_signupBtn.Click += new System.EventHandler(this.login_signupBtn_Click);
             // 
@@ -181,19 +181,19 @@ namespace ManagementSystem.Pages
             // 
             // login_btn
             // 
-            this.login_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            this.login_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.login_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.login_btn.FlatAppearance.BorderSize = 0;
-            this.login_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
-            this.login_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.login_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.login_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.login_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.ForeColor = System.Drawing.Color.White;
             this.login_btn.Location = new System.Drawing.Point(290, 292);
             this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(93, 34);
+            this.login_btn.Size = new System.Drawing.Size(261, 30);
             this.login_btn.TabIndex = 8;
-            this.login_btn.Text = "LOGIN";
+            this.login_btn.Text = "LOG IN";
             this.login_btn.UseVisualStyleBackColor = false;
             this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
