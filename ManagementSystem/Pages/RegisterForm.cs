@@ -44,6 +44,10 @@ namespace ManagementSystem.Pages
                 return;
             }
 
+
+            // Hash the password before storing it
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
@@ -52,7 +56,7 @@ namespace ManagementSystem.Pages
                     string query = "INSERT INTO Users (Username, Password) VALUES (@username, @password)";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", txtUsername.Text);
-                    cmd.Parameters.AddWithValue("@password", txtPassword.Text);
+                    cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                     cmd.ExecuteNonQuery();
 

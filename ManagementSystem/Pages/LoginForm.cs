@@ -64,14 +64,13 @@ namespace ManagementSystem.Pages
                     try
                     {
                         conn.Open();
-                        string query = "SELECT COUNT(*) FROM Users WHERE Username=@username AND Password=@password";
+                        string query = "SELECT Password FROM Users WHERE Username=@username";
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@username", login_username.Text.Trim());
-                        cmd.Parameters.AddWithValue("@password", login_password.Text.Trim());
 
-                        int result = Convert.ToInt32(cmd.ExecuteScalar());
+                        string storedHash = (string)cmd.ExecuteScalar();
 
-                        if (result > 0)
+                        if (storedHash != null && BCrypt.Net.BCrypt.Verify(login_password.Text.Trim(), storedHash))
                         {
                             MessageBox.Show("Login successful!");
                             // Proceed to the next form or main application
