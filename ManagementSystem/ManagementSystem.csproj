@@ -119,11 +119,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\AddClientForm.Designer.cs">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pages\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\EditClientForm.Designer.cs">
+      <DependentUpon>EditClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginForm.cs">
       <SubType>Form</SubType>
@@ -139,8 +151,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pages\AddClientForm.resx">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EditClientForm.resx">
+      <DependentUpon>EditClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

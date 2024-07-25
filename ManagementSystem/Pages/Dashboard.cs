@@ -1,14 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ManagementSystem.Pages
 {
@@ -25,9 +18,13 @@ namespace ManagementSystem.Pages
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            // Inicialize os componentes do dashboard e carregue os dados específicos do utilizador, se necessário.
             lblWelcome.Text = "Welcome, " + GetUsernameById(userId);
             UpdateDashboardData();
+            //dgvClients.Visible = false;
+            //btnAddClient.Visible = false;
+            //btnEditClient.Visible = false;
+            //tnRemoveClient.Visible = true;
+            timer1.Start();
         }
 
         private void UpdateDashboardData()
@@ -35,8 +32,13 @@ namespace ManagementSystem.Pages
             lblSoldBooks.Text = "1000"; /* GetBooksSold */
             lblPurchasedBooks.Text = "1234"; /* GetPurchasedBooks */
             lblCustomers.Text = "512"; /* GetCustomers (count) */
+        }
 
-            // Atualize os gráficos, se necessário.
+        
+        // Get time function
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString("HH:mm");
         }
 
         private string GetUsernameById(int userId)
@@ -70,24 +72,105 @@ namespace ManagementSystem.Pages
             return username;
         }
 
-        private void searchBookBtn_Click(object sender, EventArgs e)
+        private void btnClients_Click(object sender, EventArgs e)
         {
-            // Código para abrir o formulário de busca de livros.
+            LoadClients();
+            dgvClients.Visible = true;
+            btnAddClient.Visible = true;
+            btnEditClient.Visible = true;
+            btnRemoveClient.Visible = true;
         }
 
-        private void purchaseBookBtn_Click(object sender, EventArgs e)
+        // Load clients function
+        private void LoadClients()
         {
-            // Código para abrir o formulário de compra de livros.
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT Id, Name, Email, Phone, Nif, Address FROM Clients";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgvClients.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
-        private void viewStockBtn_Click(object sender, EventArgs e)
+        private void btnAddClient_Click(object sender, EventArgs e)
         {
-            // Código para abrir o formulário de visualização de estoque.
+            AddClientForm addClientForm = new AddClientForm();
+            if (addClientForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadClients();
+            }
         }
 
+        private void btnEditClient_Click(object sender, EventArgs e)
+        {
+            if (dgvClients.SelectedRows.Count > 0)
+            {
+                int clientId = Convert.ToInt32(dgvClients.SelectedRows[0].Cells[0].Value);
+                EditClientForm editClientForm = new EditClientForm(clientId);
+                if (editClientForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadClients();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a client to edit.");
+            }
+        }
+
+        private void btnRemoveClient_Click(object sender, EventArgs e)
+        {
+            if (dgvClients.SelectedRows.Count > 0)
+            {
+                int clientId = Convert.ToInt32(dgvClients.SelectedRows[0].Cells[0].Value);
+                var result = MessageBox.Show("Are you sure you want to delete this client?", "Confirmation", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        using (MySqlConnection conn = new MySqlConnection(connectionString))
+                        {
+                            conn.Open();
+                            string query = "DELETE FROM Clients WHERE Id=@id";
+                            MySqlCommand cmd = new MySqlCommand(query, conn);
+                            cmd.Parameters.AddWithValue("@id", clientId);
+                            cmd.ExecuteNonQuery();
+                            LoadClients();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a client to delete.");
+            }
+        }
+
+
+        private void btnHome_Click(object sender, EventArgs e) 
+        { 
+            dgvClients.Visible = false;
+            btnAddClient.Visible = false;
+            btnEditClient.Visible = false;
+            btnRemoveClient.Visible = false;
+        }
+        
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            // Código para fazer logout e retornar ao formulário de login.
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Close();
