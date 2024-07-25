@@ -212,36 +212,52 @@ namespace ManagementSystem.Pages
             // 
             // btnAddClient
             // 
+            this.btnAddClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnAddClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddClient.FlatAppearance.BorderSize = 0;
+            this.btnAddClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddClient.ForeColor = System.Drawing.Color.White;
             this.btnAddClient.Location = new System.Drawing.Point(47, 388);
             this.btnAddClient.Name = "btnAddClient";
-            this.btnAddClient.Size = new System.Drawing.Size(75, 23);
+            this.btnAddClient.Size = new System.Drawing.Size(100, 30);
             this.btnAddClient.TabIndex = 1;
             this.btnAddClient.Text = "Add";
-            this.btnAddClient.UseVisualStyleBackColor = true;
+            this.btnAddClient.UseVisualStyleBackColor = false;
             this.btnAddClient.Visible = false;
             this.btnAddClient.Click += new System.EventHandler(this.btnAddClient_Click);
             // 
             // btnEditClient
             // 
-            this.btnEditClient.Location = new System.Drawing.Point(127, 388);
+            this.btnEditClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnEditClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditClient.FlatAppearance.BorderSize = 0;
+            this.btnEditClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditClient.ForeColor = System.Drawing.Color.White;
+            this.btnEditClient.Location = new System.Drawing.Point(160, 388);
             this.btnEditClient.Name = "btnEditClient";
-            this.btnEditClient.Size = new System.Drawing.Size(75, 23);
+            this.btnEditClient.Size = new System.Drawing.Size(100, 30);
             this.btnEditClient.TabIndex = 2;
             this.btnEditClient.Text = "Edit";
-            this.btnEditClient.UseVisualStyleBackColor = true;
+            this.btnEditClient.UseVisualStyleBackColor = false;
             this.btnEditClient.Visible = false;
             this.btnEditClient.Click += new System.EventHandler(this.btnEditClient_Click);
             // 
             // btnRemoveClient
             // 
-            this.btnRemoveClient.Location = new System.Drawing.Point(207, 388);
+            this.btnRemoveClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnRemoveClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveClient.FlatAppearance.BorderSize = 0;
+            this.btnRemoveClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveClient.ForeColor = System.Drawing.Color.White;
+            this.btnRemoveClient.Location = new System.Drawing.Point(273, 388);
             this.btnRemoveClient.Name = "btnRemoveClient";
-            this.btnRemoveClient.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveClient.Size = new System.Drawing.Size(100, 30);
             this.btnRemoveClient.TabIndex = 3;
             this.btnRemoveClient.Text = "Remove";
-            this.btnRemoveClient.UseVisualStyleBackColor = true;
+            this.btnRemoveClient.UseVisualStyleBackColor = false;
             this.btnRemoveClient.Visible = false;
             this.btnRemoveClient.Click += new System.EventHandler(this.btnRemoveClient_Click);
+            // 
             // 
             // panelTop
             // 
@@ -297,10 +313,17 @@ namespace ManagementSystem.Pages
             // 
             // dgvClients
             // 
+            this.dgvClients.BackgroundColor = System.Drawing.Color.White;
+            this.dgvClients.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvClients.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClients.EnableHeadersVisualStyles = false;
+            this.dgvClients.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvClients.Location = new System.Drawing.Point(47, 70);
             this.dgvClients.Name = "dgvClients";
+            this.dgvClients.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvClients.RowHeadersWidth = 51;
+            this.dgvClients.RowTemplate.Height = 24;
             this.dgvClients.Size = new System.Drawing.Size(742, 300);
             this.dgvClients.TabIndex = 0;
             this.dgvClients.Visible = false;

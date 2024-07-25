@@ -77,6 +77,11 @@ namespace ManagementSystem.Pages
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 
