@@ -24,10 +24,21 @@ namespace ManagementSystem.Pages
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            login_username.KeyDown += new KeyEventHandler(LoginFields_KeyDown);
+            login_password.KeyDown += new KeyEventHandler(LoginFields_KeyDown);
         }
 
-        
+        // Handle the KeyDown event for both username and password fields
+        private void LoginFields_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                login_btn_Click(sender, e);
+            }
+        }
+
+
         // Exits the application
         private void exit_Click(object sender, EventArgs e)
         {
@@ -50,6 +61,8 @@ namespace ManagementSystem.Pages
             login_password.PasswordChar = login_showPass.Checked ? '\0' : '*';
         }
 
+        
+        // Perform login
         private void login_btn_Click(object sender, EventArgs e)
         {
             if (login_username.Text == "" || login_password.Text == "")
@@ -64,28 +77,43 @@ namespace ManagementSystem.Pages
                     try
                     {
                         conn.Open();
-                        string query = "SELECT Password FROM Users WHERE Username=@username";
+                        string query = "SELECT ID, Password FROM Users WHERE Username=@username";
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@username", login_username.Text.Trim());
 
-                        string storedHash = (string)cmd.ExecuteScalar();
-
-                        if (storedHash != null && BCrypt.Net.BCrypt.Verify(login_password.Text.Trim(), storedHash))
-                        {
-                            MessageBox.Show("Login successful!");
-                            // Proceed to the next form or main application
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.");
-                        }
+                        ComparePasswords(cmd);        
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Error: " + ex.Message);
                     }
                 }
+            }
+        }
 
+
+        // Function to compare passwords (inserted by user and in the database)
+        private void ComparePasswords(MySqlCommand cmd)
+        {
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                string storedHash = reader["Password"].ToString();
+                int userId = Convert.ToInt32(reader["ID"]);
+
+                if (BCrypt.Net.BCrypt.Verify(login_password.Text.Trim(), storedHash))
+                {
+                    reader.Close();
+
+                    // Open the Dashboard and pass the user ID
+                    Dashboard dashboard = new Dashboard(userId);
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.");
+                }
             }
         }
     }
