@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementSystem.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace ManagementSystem.Pages
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.login_signupBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,7 +48,6 @@ namespace ManagementSystem.Pages
             this.label4 = new System.Windows.Forms.Label();
             this.login_showPass = new System.Windows.Forms.CheckBox();
             this.login_btn = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,18 +62,32 @@ namespace ManagementSystem.Pages
             this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 400);
+            this.panel1.Size = new System.Drawing.Size(355, 492);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::ManagementSystem.Properties.Resources.open_book;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(353, 195);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(19, 175);
+            this.label6.Location = new System.Drawing.Point(25, 215);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(229, 19);
+            this.label6.Size = new System.Drawing.Size(250, 24);
             this.label6.TabIndex = 2;
             this.label6.Text = "Store Management System";
             // 
@@ -86,9 +101,10 @@ namespace ManagementSystem.Pages
             this.login_signupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_signupBtn.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_signupBtn.ForeColor = System.Drawing.Color.White;
-            this.login_signupBtn.Location = new System.Drawing.Point(22, 356);
+            this.login_signupBtn.Location = new System.Drawing.Point(29, 438);
+            this.login_signupBtn.Margin = new System.Windows.Forms.Padding(4);
             this.login_signupBtn.Name = "login_signupBtn";
-            this.login_signupBtn.Size = new System.Drawing.Size(226, 31);
+            this.login_signupBtn.Size = new System.Drawing.Size(301, 38);
             this.login_signupBtn.TabIndex = 1;
             this.login_signupBtn.Text = "SIGN UP";
             this.login_signupBtn.UseVisualStyleBackColor = false;
@@ -99,9 +115,10 @@ namespace ManagementSystem.Pages
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(70, 330);
+            this.label5.Location = new System.Drawing.Point(93, 406);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 14);
+            this.label5.Size = new System.Drawing.Size(151, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "Register your Account";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -111,9 +128,10 @@ namespace ManagementSystem.Pages
             this.exit.AutoSize = true;
             this.exit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exit.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit.Location = new System.Drawing.Point(550, 7);
+            this.exit.Location = new System.Drawing.Point(733, 9);
+            this.exit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(17, 18);
+            this.exit.Size = new System.Drawing.Size(21, 23);
             this.exit.TabIndex = 1;
             this.exit.Text = "X";
             this.exit.Click += new System.EventHandler(this.exit_Click);
@@ -122,9 +140,10 @@ namespace ManagementSystem.Pages
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(286, 60);
+            this.label2.Location = new System.Drawing.Point(381, 74);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 22);
+            this.label2.Size = new System.Drawing.Size(177, 28);
             this.label2.TabIndex = 2;
             this.label2.Text = "Login Account";
             // 
@@ -132,38 +151,42 @@ namespace ManagementSystem.Pages
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(287, 133);
+            this.label3.Location = new System.Drawing.Point(383, 164);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 16);
+            this.label3.Size = new System.Drawing.Size(91, 21);
             this.label3.TabIndex = 3;
             this.label3.Text = "Username:";
             // 
             // login_username
             // 
             this.login_username.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_username.Location = new System.Drawing.Point(290, 153);
+            this.login_username.Location = new System.Drawing.Point(387, 188);
+            this.login_username.Margin = new System.Windows.Forms.Padding(4);
             this.login_username.Multiline = true;
             this.login_username.Name = "login_username";
-            this.login_username.Size = new System.Drawing.Size(261, 30);
+            this.login_username.Size = new System.Drawing.Size(347, 36);
             this.login_username.TabIndex = 4;
             // 
             // login_password
             // 
             this.login_password.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_password.Location = new System.Drawing.Point(290, 217);
+            this.login_password.Location = new System.Drawing.Point(387, 267);
+            this.login_password.Margin = new System.Windows.Forms.Padding(4);
             this.login_password.Multiline = true;
             this.login_password.Name = "login_password";
             this.login_password.PasswordChar = '*';
-            this.login_password.Size = new System.Drawing.Size(261, 30);
+            this.login_password.Size = new System.Drawing.Size(347, 36);
             this.login_password.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(287, 197);
+            this.label4.Location = new System.Drawing.Point(383, 242);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 16);
+            this.label4.Size = new System.Drawing.Size(87, 21);
             this.label4.TabIndex = 5;
             this.label4.Text = "Password:";
             // 
@@ -171,9 +194,10 @@ namespace ManagementSystem.Pages
             // 
             this.login_showPass.AutoSize = true;
             this.login_showPass.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_showPass.Location = new System.Drawing.Point(439, 253);
+            this.login_showPass.Location = new System.Drawing.Point(585, 311);
+            this.login_showPass.Margin = new System.Windows.Forms.Padding(4);
             this.login_showPass.Name = "login_showPass";
-            this.login_showPass.Size = new System.Drawing.Size(112, 18);
+            this.login_showPass.Size = new System.Drawing.Size(130, 22);
             this.login_showPass.TabIndex = 7;
             this.login_showPass.Text = "Show Password";
             this.login_showPass.UseVisualStyleBackColor = true;
@@ -189,29 +213,21 @@ namespace ManagementSystem.Pages
             this.login_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.login_btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.ForeColor = System.Drawing.Color.White;
-            this.login_btn.Location = new System.Drawing.Point(290, 292);
+            this.login_btn.Location = new System.Drawing.Point(387, 359);
+            this.login_btn.Margin = new System.Windows.Forms.Padding(4);
             this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(261, 30);
+            this.login_btn.Size = new System.Drawing.Size(348, 37);
             this.login_btn.TabIndex = 8;
             this.login_btn.Text = "LOG IN";
             this.login_btn.UseVisualStyleBackColor = false;
             this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
-            // pictureBox1
+            // LoginForm
             // 
-            //this.pictureBox1.Image = global::EmployeeManagementSystem.Properties.Resources.icons8_employee_card_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(79, 59);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(575, 400);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(767, 492);
             this.Controls.Add(this.login_btn);
             this.Controls.Add(this.login_showPass);
             this.Controls.Add(this.login_password);
@@ -222,7 +238,8 @@ namespace ManagementSystem.Pages
             this.Controls.Add(this.exit);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.LoginForm_Load);
@@ -231,6 +248,7 @@ namespace ManagementSystem.Pages
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
-using MaterialSkin;
-using MaterialSkin.Controls;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace ManagementSystem.Pages
 {
@@ -112,6 +108,8 @@ namespace ManagementSystem.Pages
                 }
                 else
                 {
+                    login_username.Text = string.Empty;
+                    login_password.Text = string.Empty;
                     MessageBox.Show("Invalid username or password.");
                 }
             }

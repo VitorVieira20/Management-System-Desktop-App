@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementSystem.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -90,11 +91,14 @@ namespace ManagementSystem.Pages
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(79, 75);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::ManagementSystem.Properties.Resources.open_book;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.Size = new System.Drawing.Size(265, 157);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // label6
@@ -104,7 +108,7 @@ namespace ManagementSystem.Pages
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(19, 175);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(290, 24);
+            this.label6.Size = new System.Drawing.Size(250, 24);
             this.label6.TabIndex = 2;
             this.label6.Text = "Store Management System";
             // 
@@ -115,7 +119,7 @@ namespace ManagementSystem.Pages
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(70, 330);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 14);
+            this.label5.Size = new System.Drawing.Size(177, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "Already have an account?";
             this.label5.Click += new System.EventHandler(this.label5_Click);
