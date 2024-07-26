@@ -28,6 +28,9 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblStockSearch;
+        private System.Windows.Forms.TextBox txtStockSearch;
+        private System.Windows.Forms.Button btnStockSearch;
         private System.Windows.Forms.ListView lvClients;
         private System.Windows.Forms.ColumnHeader chId;
         private System.Windows.Forms.ColumnHeader chName;
@@ -37,8 +40,12 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.ColumnHeader chAddress; 
         private System.Windows.Forms.ListView lvStock;
         private System.Windows.Forms.ColumnHeader chBookId;
-        private System.Windows.Forms.ColumnHeader chBookName;
+        private System.Windows.Forms.ColumnHeader chBookTitle;
         private System.Windows.Forms.ColumnHeader chBookStock;
+        private System.Windows.Forms.ColumnHeader chBookAuthor;
+        private System.Windows.Forms.ColumnHeader chBookPublishDate;
+        private System.Windows.Forms.ComboBox cmbStockFilter;
+        private System.Windows.Forms.Label lblStockFilter;
 
         protected override void Dispose(bool disposing)
         {
@@ -78,11 +85,18 @@ namespace ManagementSystem.Pages
             this.chAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvStock = new System.Windows.Forms.ListView();
             this.chBookId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookPublishDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.lblStockSearch = new System.Windows.Forms.Label();
+            this.txtStockSearch = new System.Windows.Forms.TextBox();
+            this.btnStockSearch = new System.Windows.Forms.Button();
+            this.cmbStockFilter = new System.Windows.Forms.ComboBox();
+            this.lblStockFilter = new System.Windows.Forms.Label();
             this.lblCustomers = new System.Windows.Forms.Label();
             this.lblPurchasedBooks = new System.Windows.Forms.Label();
             this.lblSoldBooks = new System.Windows.Forms.Label();
@@ -327,12 +341,17 @@ namespace ManagementSystem.Pages
             this.panelMain.Controls.Add(this.lblSearch);
             this.panelMain.Controls.Add(this.txtSearch);
             this.panelMain.Controls.Add(this.btnSearch);
+            this.panelMain.Controls.Add(this.lblStockSearch);
+            this.panelMain.Controls.Add(this.txtStockSearch);
+            this.panelMain.Controls.Add(this.btnStockSearch);
             this.panelMain.Controls.Add(this.btnAddClient);
             this.panelMain.Controls.Add(this.btnEditClient);
             this.panelMain.Controls.Add(this.btnRemoveClient);
             this.panelMain.Controls.Add(this.lblCustomers);
             this.panelMain.Controls.Add(this.lblPurchasedBooks);
             this.panelMain.Controls.Add(this.lblSoldBooks);
+            this.panelMain.Controls.Add(this.lblStockFilter);
+            this.panelMain.Controls.Add(this.cmbStockFilter);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(227, 62);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4);
@@ -428,13 +447,15 @@ namespace ManagementSystem.Pages
             // 
             this.lvStock.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chBookId,
-            this.chBookName,
+            this.chBookTitle,
+            this.chBookAuthor,
+            this.chBookPublishDate,
             this.chBookStock});
             this.lvStock.FullRowSelect = true;
             this.lvStock.GridLines = true;
             this.lvStock.HideSelection = false;
             this.lvStock.Location = new System.Drawing.Point(47, 47);
-            this.lvStock.Name = "lvClients";
+            this.lvStock.Name = "lvStock";
             this.lvStock.Size = new System.Drawing.Size(742, 319);
             this.lvStock.TabIndex = 0;
             this.lvStock.UseCompatibleStateImageBehavior = false;
@@ -446,25 +467,85 @@ namespace ManagementSystem.Pages
             this.chBookId.Text = "BOOK_ID";
             this.chBookId.Width = 75;
             // 
-            // chBookName
+            // chBookTitle
             // 
-            this.chBookName.Text = "Book Name";
-            this.chBookName.Width = 150;
+            this.chBookTitle.Text = "Book Title";
+            this.chBookTitle.Width = 150;
+            // 
+            // chBookAuthor
+            // 
+            this.chBookAuthor.Text = "Author";
+            this.chBookAuthor.Width = 100;
+            // 
+            // chBookPublishDate
+            // 
+            this.chBookPublishDate.Text = "Publish Date";
+            this.chBookPublishDate.Width = 75;
             // 
             // chBookStock
             // 
             this.chBookStock.Text = "Stock";
             this.chBookStock.Width = 50;
             // 
-            // lblSearch
+            // lblStockSearch
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(395, 424);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(64, 16);
-            this.lblSearch.TabIndex = 6;
-            this.lblSearch.Text = "Client Info";
-            this.lblSearch.Visible = false;
+            this.lblStockSearch.AutoSize = true;
+            this.lblStockSearch.Location = new System.Drawing.Point(395, 424);
+            this.lblStockSearch.Name = "lblSearch";
+            this.lblStockSearch.Size = new System.Drawing.Size(64, 16);
+            this.lblStockSearch.TabIndex = 6;
+            this.lblStockSearch.Text = "Book Title";
+            this.lblStockSearch.Visible = false;
+            // 
+            // txtStockSearch
+            // 
+            this.txtStockSearch.Location = new System.Drawing.Point(398, 443);
+            this.txtStockSearch.Name = "txtSearch";
+            this.txtStockSearch.Size = new System.Drawing.Size(207, 22);
+            this.txtStockSearch.TabIndex = 5;
+            this.txtStockSearch.Visible = false;
+            // 
+            // btnStockSearch
+            // 
+            this.btnStockSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnStockSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStockSearch.FlatAppearance.BorderSize = 0;
+            this.btnStockSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockSearch.ForeColor = System.Drawing.Color.White;
+            this.btnStockSearch.Location = new System.Drawing.Point(620, 439);
+            this.btnStockSearch.Name = "btnSearch";
+            this.btnStockSearch.Size = new System.Drawing.Size(100, 30);
+            this.btnStockSearch.TabIndex = 4;
+            this.btnStockSearch.Text = "Search";
+            this.btnStockSearch.UseVisualStyleBackColor = false;
+            this.btnStockSearch.Visible = false;
+            this.btnStockSearch.Click += new System.EventHandler(this.btnStockSearch_Click);
+            // 
+            // lblStockFilter
+            // 
+            this.lblStockFilter.AutoSize = true;
+            this.lblStockFilter.Location = new System.Drawing.Point(250, 424);
+            this.lblStockFilter.Name = "lblSearch";
+            this.lblStockFilter.Size = new System.Drawing.Size(64, 16);
+            this.lblStockFilter.TabIndex = 6;
+            this.lblStockFilter.Text = "Filter";
+            this.lblStockFilter.Visible = false;
+            // 
+            // cmbStockFilter
+            // 
+            this.cmbStockFilter.FormattingEnabled = true;
+            this.cmbStockFilter.Items.AddRange(new object[] {
+                "Stock Ascending",
+                "Stock Descending",
+                "Title Ascending",
+                "Title Descending",
+                "Date Ascending",
+                "Date Descending"});
+            this.cmbStockFilter.Location = new System.Drawing.Point(250, 442);
+            this.cmbStockFilter.Name = "cmbStockFilter";
+            this.cmbStockFilter.Size = new System.Drawing.Size(121, 21);
+            this.cmbStockFilter.TabIndex = 10;
+            this.cmbStockFilter.Visible = false;
             // 
             // lblCustomers
             // 

@@ -29,7 +29,7 @@ namespace ManagementSystem.Pages
         {
             lblSoldBooks.Text = "1000"; /* GetBooksSold */
             lblPurchasedBooks.Text = "1234"; /* GetPurchasedBooks */
-            lblCustomers.Text = "512"; /* GetCustomers (count) */
+            lblCustomers.Text = GetClientsCount();
         }
 
         
@@ -39,36 +39,6 @@ namespace ManagementSystem.Pages
             lblTime.Text = DateTime.Now.ToString("HH:mm");
         }
 
-        private string GetUsernameById(int userId)
-        {
-            string username = null;
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {   
-                // Open a SQL connection and try to get a user by id
-                try
-                {
-                    conn.Open();
-                    string query = "SELECT * FROM Users WHERE Id=@id";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@id", userId);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            username = reader["Username"].ToString();
-                        }
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
-            }
-            return username;
-        }
 
         // Function to set components visibility
         private void SetVisibility(bool visible, params Control[] controls)
@@ -89,20 +59,6 @@ namespace ManagementSystem.Pages
         private void ShowComponents(params Control[] controls)
         {
             SetVisibility(true, controls);
-        }
-
-        private void btnClients_Click(object sender, EventArgs e)
-        {
-            LoadClients();
-            ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lvStock);
-        }
-
-        private void btnStock_Click(object sender, EventArgs e)
-        {
-            LoadStock();
-            ShowComponents(lvStock);
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
         }
 
         // Load clients function
@@ -146,7 +102,7 @@ namespace ManagementSystem.Pages
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT b.Id, b.Title, s.Quantity FROM Books b INNER JOIN Stock s ON b.Id = s.Book_id ORDER BY s.Quantity ASC";
+                    string query = "SELECT b.Id, b.Title, b.Author, b.Publish_date, s.Quantity FROM Books b INNER JOIN Stock s ON b.Id = s.Book_id ORDER BY s.Quantity ASC";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -156,6 +112,17 @@ namespace ManagementSystem.Pages
                     {
                         ListViewItem item = new ListViewItem(reader["Id"].ToString());
                         item.SubItems.Add(reader["Title"].ToString());
+                        item.SubItems.Add(reader["Author"].ToString());
+
+                        if (DateTime.TryParse(reader["Publish_date"].ToString(), out DateTime publishDate))
+                        {
+                            string formattedDate = publishDate.ToString("dd/MM/yyyy");
+                            item.SubItems.Add(formattedDate);
+                        }
+                        else
+                        {
+                            item.SubItems.Add("Data inválida");
+                        }
                         item.SubItems.Add(reader["Quantity"].ToString());
 
                         lvStock.Items.Add(item);
@@ -166,6 +133,161 @@ namespace ManagementSystem.Pages
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        // Function to get a Username by ID
+        private string GetUsernameById(int userId)
+        {
+            string username = null;
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                // Open a SQL connection and try to get a user by id
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Users WHERE Id=@id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@id", userId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            username = reader["Username"].ToString();
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            return username;
+        }
+
+        // Function to get count of clients
+        private string GetClientsCount() 
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Clients";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return "0";
+            }
+        }
+
+        // Check if the book stock is low
+        private void CheckLowStock()
+        {
+
+            foreach (ListViewItem item in lvStock.Items)
+            {
+                int stockQuantity;
+                item.BackColor = int.TryParse(item.SubItems[4].Text, out stockQuantity) && stockQuantity < 10
+                    ? Color.LightCoral : Color.White;
+
+            }
+        }
+
+        // Order Stock by quantity
+        private void SortStockByQuantity(bool ascending)
+        {
+            var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item =>
+            {
+                int quantity;
+                return int.TryParse(item.SubItems[4].Text, out quantity) ? quantity : 0;
+            }).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvStock.Items.Clear();
+            lvStock.Items.AddRange(items.ToArray());
+        }
+
+        // Order Stock by book title
+        private void SortStockByTitle(bool ascending)
+        {
+            var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[1].Text).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvStock.Items.Clear();
+            lvStock.Items.AddRange(items.ToArray());
+        }
+
+        // Order Stock by book publish date
+        private void SortStockByPublishDate(bool ascending)
+        {
+            var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[3].Text).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvStock.Items.Clear();
+            lvStock.Items.AddRange(items.ToArray());
+        }
+
+        // Switch case to choose the filter
+        private void cmbStockFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbStockFilter.SelectedIndex)
+            {
+                case 0:
+                    SortStockByQuantity(true);
+                    break;
+                case 1:
+                    SortStockByQuantity(false);
+                    break;
+                case 2:
+                    SortStockByTitle(true);
+                    break;
+                case 3:
+                    SortStockByTitle(false);
+                    break;
+                case 4:
+                    SortStockByPublishDate(true);
+                    break;
+                case 5:
+                    SortStockByPublishDate(false);
+                    break;
+            }
+            CheckLowStock();
+        }
+
+        private void btnClients_Click(object sender, EventArgs e)
+        {
+            LoadClients();
+            ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
+            HideComponents(lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+        }
+
+        private void btnStock_Click(object sender, EventArgs e)
+        {
+            LoadStock();
+            ShowComponents(lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
+            CheckLowStock();
+            cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
 
         private void btnAddClient_Click(object sender, EventArgs e)
@@ -193,7 +315,6 @@ namespace ManagementSystem.Pages
                 MessageBox.Show("Please select a client to edit.");
             }
         }
-
 
         private void btnRemoveClient_Click(object sender, EventArgs e)
         {
@@ -227,22 +348,53 @@ namespace ManagementSystem.Pages
             }
         }
 
-
-
         private void btnHome_Click(object sender, EventArgs e) 
         {
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim().ToLower();
+            bool itemFound = false;
+
             foreach (ListViewItem item in lvClients.Items)
             {
-                item.BackColor = item.SubItems.Cast<ListViewItem.ListViewSubItem>().Any(subItem => subItem.Text.ToLower().Contains(searchText)) ? Color.LightYellow : Color.White;
+                if (item.SubItems.Cast<ListViewItem.ListViewSubItem>().Any(subItem => subItem.Text.ToLower().Contains(searchText)))
+                {
+                    item.BackColor = Color.Yellow;
+                    if (!itemFound)
+                    {
+                        item.EnsureVisible();
+                        itemFound = true;
+                    }
+                }
+                else
+                {
+                    item.BackColor = Color.White;
+                }
             }
         }
 
+        private void btnStockSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtStockSearch.Text.Trim().ToLower();
+            bool itemFound = false;
+            CheckLowStock();
+
+            foreach (ListViewItem item in lvStock.Items)
+            {   
+                if (item.SubItems.Cast<ListViewItem.ListViewSubItem>().Any(subItem => subItem.Text.ToLower().Contains(searchText)))
+                {
+                    item.BackColor = Color.Yellow;
+                    if (!itemFound)
+                    {
+                        item.EnsureVisible();
+                        itemFound = true;
+                    }
+                }
+            }
+        }
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
