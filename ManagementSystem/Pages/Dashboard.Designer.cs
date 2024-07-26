@@ -25,14 +25,20 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox picLogo;
-
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListView lvClients;
         private System.Windows.Forms.ColumnHeader chId;
         private System.Windows.Forms.ColumnHeader chName;
         private System.Windows.Forms.ColumnHeader chEmail;
         private System.Windows.Forms.ColumnHeader chPhone;
         private System.Windows.Forms.ColumnHeader chNif;
-        private System.Windows.Forms.ColumnHeader chAddress;
+        private System.Windows.Forms.ColumnHeader chAddress; 
+        private System.Windows.Forms.ListView lvStock;
+        private System.Windows.Forms.ColumnHeader chBookId;
+        private System.Windows.Forms.ColumnHeader chBookName;
+        private System.Windows.Forms.ColumnHeader chBookStock;
 
         protected override void Dispose(bool disposing)
         {
@@ -63,13 +69,17 @@ namespace ManagementSystem.Pages
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.lvClients = new System.Windows.Forms.ListView();
+            this.lvClients = new System.Windows.Forms.ListView();;
             this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chNif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvStock = new System.Windows.Forms.ListView();
+            this.chBookId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -193,6 +203,7 @@ namespace ManagementSystem.Pages
             this.btnStock.Text = "Stock";
             this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
             // 
             // btnClients
             // 
@@ -312,6 +323,7 @@ namespace ManagementSystem.Pages
             // panelMain
             // 
             this.panelMain.Controls.Add(this.lvClients);
+            this.panelMain.Controls.Add(this.lvStock);
             this.panelMain.Controls.Add(this.lblSearch);
             this.panelMain.Controls.Add(this.txtSearch);
             this.panelMain.Controls.Add(this.btnSearch);
@@ -412,6 +424,48 @@ namespace ManagementSystem.Pages
             this.btnSearch.Visible = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // lvStock
+            // 
+            this.lvStock.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chBookId,
+            this.chBookName,
+            this.chBookStock});
+            this.lvStock.FullRowSelect = true;
+            this.lvStock.GridLines = true;
+            this.lvStock.HideSelection = false;
+            this.lvStock.Location = new System.Drawing.Point(47, 47);
+            this.lvStock.Name = "lvClients";
+            this.lvStock.Size = new System.Drawing.Size(742, 319);
+            this.lvStock.TabIndex = 0;
+            this.lvStock.UseCompatibleStateImageBehavior = false;
+            this.lvStock.View = System.Windows.Forms.View.Details;
+            this.lvStock.Visible = false;
+            // 
+            // chBookId
+            // 
+            this.chBookId.Text = "BOOK_ID";
+            this.chBookId.Width = 75;
+            // 
+            // chBookName
+            // 
+            this.chBookName.Text = "Book Name";
+            this.chBookName.Width = 150;
+            // 
+            // chBookStock
+            // 
+            this.chBookStock.Text = "Stock";
+            this.chBookStock.Width = 50;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(395, 424);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(64, 16);
+            this.lblSearch.TabIndex = 6;
+            this.lblSearch.Text = "Client Info";
+            this.lblSearch.Visible = false;
+            // 
             // lblCustomers
             // 
             this.lblCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -467,9 +521,5 @@ namespace ManagementSystem.Pages
             this.ResumeLayout(false);
 
         }
-
-        private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
     }
 }

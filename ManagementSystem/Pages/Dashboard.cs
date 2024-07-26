@@ -80,6 +80,24 @@ namespace ManagementSystem.Pages
             lblSearch.Visible = true;
             txtSearch.Visible = true;
             btnSearch.Visible = true;
+
+            // Other Components
+            lvStock.Visible = false;
+        }
+
+        private void btnStock_Click(object sender, EventArgs e)
+        {
+            LoadStock();
+            lvStock.Visible = true;
+
+            // Other Components
+            lvClients.Visible = false;
+            btnAddClient.Visible = false;
+            btnEditClient.Visible = false;
+            btnRemoveClient.Visible = false;
+            lblSearch.Visible = false;
+            txtSearch.Visible = false;
+            btnSearch.Visible = false;
         }
 
         // Load clients function
@@ -115,6 +133,35 @@ namespace ManagementSystem.Pages
             }
         }
 
+        // Load stock function
+        private void LoadStock()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT b.Id, b.Title, s.Quantity FROM Books b INNER JOIN Stock s ON b.Id = s.Book_id ORDER BY s.Quantity ASC";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    lvStock.Items.Clear();
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["Id"].ToString());
+                        item.SubItems.Add(reader["Title"].ToString());
+                        item.SubItems.Add(reader["Quantity"].ToString());
+
+                        lvStock.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
 
         private void btnAddClient_Click(object sender, EventArgs e)
         {
@@ -179,6 +226,7 @@ namespace ManagementSystem.Pages
 
         private void btnHome_Click(object sender, EventArgs e) 
         { 
+            // Client Page
             lvClients.Visible = false;
             btnAddClient.Visible = false;
             btnEditClient.Visible = false;
@@ -186,6 +234,9 @@ namespace ManagementSystem.Pages
             lblSearch.Visible = false;
             txtSearch.Visible = false;
             btnSearch.Visible = false;
+
+            // Stock Page
+            lvStock.Visible = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
