@@ -10,7 +10,7 @@ namespace ManagementSystem.Pages
     public partial class Dashboard : Form
     {
         private int userId;
-        string connectionString = "Server=localhost;Database=systemmanagement;User ID=root;Password=@//Vitor925139873//@@BASQUETEBOL#@;";
+        string connectionString = Configuration.ConnectionString;
 
         public Dashboard(int userId)
         {

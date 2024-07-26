@@ -7,7 +7,7 @@ namespace ManagementSystem.Pages
 {
     public partial class AddClientForm : Form
     {
-        string connectionString = "Server=localhost;Database=systemmanagement;User ID=root;Password=@//Vitor925139873//@@BASQUETEBOL#@;";
+        string connectionString = Configuration.ConnectionString;
 
         public AddClientForm()
         {

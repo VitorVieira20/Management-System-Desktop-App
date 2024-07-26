@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
     <Compile Include="Pages\AddClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
