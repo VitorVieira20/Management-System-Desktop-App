@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ManagementSystem.Pages
@@ -20,10 +22,6 @@ namespace ManagementSystem.Pages
         {
             lblWelcome.Text = "Welcome, " + GetUsernameById(userId);
             UpdateDashboardData();
-            //dgvClients.Visible = false;
-            //btnAddClient.Visible = false;
-            //btnEditClient.Visible = false;
-            //tnRemoveClient.Visible = true;
             timer1.Start();
         }
 
@@ -75,10 +73,13 @@ namespace ManagementSystem.Pages
         private void btnClients_Click(object sender, EventArgs e)
         {
             LoadClients();
-            dgvClients.Visible = true;
+            lvClients.Visible = true;
             btnAddClient.Visible = true;
             btnEditClient.Visible = true;
             btnRemoveClient.Visible = true;
+            lblSearch.Visible = true;
+            txtSearch.Visible = true;
+            btnSearch.Visible = true;
         }
 
         // Load clients function
@@ -90,10 +91,22 @@ namespace ManagementSystem.Pages
                 {
                     conn.Open();
                     string query = "SELECT Id, Name, Email, Phone, Nif, Address FROM Clients";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvClients.DataSource = dt;
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    lvClients.Items.Clear();
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["Id"].ToString());
+                        item.SubItems.Add(reader["Name"].ToString());
+                        item.SubItems.Add(reader["Email"].ToString());
+                        item.SubItems.Add(reader["Phone"].ToString());
+                        item.SubItems.Add(reader["Nif"].ToString());
+                        item.SubItems.Add(reader["Address"].ToString());
+
+                        lvClients.Items.Add(item);
+                    }
                 }
             }
             catch (Exception ex)
@@ -101,6 +114,7 @@ namespace ManagementSystem.Pages
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void btnAddClient_Click(object sender, EventArgs e)
         {
@@ -113,9 +127,9 @@ namespace ManagementSystem.Pages
 
         private void btnEditClient_Click(object sender, EventArgs e)
         {
-            if (dgvClients.SelectedRows.Count > 0)
+            if (lvClients.SelectedItems.Count > 0)
             {
-                int clientId = Convert.ToInt32(dgvClients.SelectedRows[0].Cells[0].Value);
+                int clientId = Convert.ToInt32(lvClients.SelectedItems[0].SubItems[0].Text);
                 EditClientForm editClientForm = new EditClientForm(clientId);
                 if (editClientForm.ShowDialog() == DialogResult.OK)
                 {
@@ -128,11 +142,12 @@ namespace ManagementSystem.Pages
             }
         }
 
+
         private void btnRemoveClient_Click(object sender, EventArgs e)
         {
-            if (dgvClients.SelectedRows.Count > 0)
+            if (lvClients.SelectedItems.Count > 0)
             {
-                int clientId = Convert.ToInt32(dgvClients.SelectedRows[0].Cells[0].Value);
+                int clientId = Convert.ToInt32(lvClients.SelectedItems[0].SubItems[0].Text);
                 var result = MessageBox.Show("Are you sure you want to delete this client?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
@@ -161,14 +176,28 @@ namespace ManagementSystem.Pages
         }
 
 
+
         private void btnHome_Click(object sender, EventArgs e) 
         { 
-            dgvClients.Visible = false;
+            lvClients.Visible = false;
             btnAddClient.Visible = false;
             btnEditClient.Visible = false;
             btnRemoveClient.Visible = false;
+            lblSearch.Visible = false;
+            txtSearch.Visible = false;
+            btnSearch.Visible = false;
         }
-        
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim().ToLower();
+            foreach (ListViewItem item in lvClients.Items)
+            {
+                item.BackColor = item.SubItems.Cast<ListViewItem.ListViewSubItem>().Any(subItem => subItem.Text.ToLower().Contains(searchText)) ? Color.LightYellow : Color.White;
+            }
+        }
+
+
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();

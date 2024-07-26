@@ -22,10 +22,17 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Label lblPurchasedBooks;
         private System.Windows.Forms.Label lblCustomers;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataGridView dgvClients;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox picLogo;
+
+        private System.Windows.Forms.ListView lvClients;
+        private System.Windows.Forms.ColumnHeader chId;
+        private System.Windows.Forms.ColumnHeader chName;
+        private System.Windows.Forms.ColumnHeader chEmail;
+        private System.Windows.Forms.ColumnHeader chPhone;
+        private System.Windows.Forms.ColumnHeader chNif;
+        private System.Windows.Forms.ColumnHeader chAddress;
 
         protected override void Dispose(bool disposing)
         {
@@ -56,7 +63,16 @@ namespace ManagementSystem.Pages
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.dgvClients = new System.Windows.Forms.DataGridView();
+            this.lvClients = new System.Windows.Forms.ListView();
+            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chNif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.lblCustomers = new System.Windows.Forms.Label();
             this.lblPurchasedBooks = new System.Windows.Forms.Label();
             this.lblSoldBooks = new System.Windows.Forms.Label();
@@ -64,7 +80,6 @@ namespace ManagementSystem.Pages
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelTop.SuspendLayout();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -217,7 +232,7 @@ namespace ManagementSystem.Pages
             this.btnAddClient.FlatAppearance.BorderSize = 0;
             this.btnAddClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddClient.ForeColor = System.Drawing.Color.White;
-            this.btnAddClient.Location = new System.Drawing.Point(47, 388);
+            this.btnAddClient.Location = new System.Drawing.Point(47, 439);
             this.btnAddClient.Name = "btnAddClient";
             this.btnAddClient.Size = new System.Drawing.Size(100, 30);
             this.btnAddClient.TabIndex = 1;
@@ -233,7 +248,7 @@ namespace ManagementSystem.Pages
             this.btnEditClient.FlatAppearance.BorderSize = 0;
             this.btnEditClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditClient.ForeColor = System.Drawing.Color.White;
-            this.btnEditClient.Location = new System.Drawing.Point(160, 388);
+            this.btnEditClient.Location = new System.Drawing.Point(160, 439);
             this.btnEditClient.Name = "btnEditClient";
             this.btnEditClient.Size = new System.Drawing.Size(100, 30);
             this.btnEditClient.TabIndex = 2;
@@ -249,7 +264,7 @@ namespace ManagementSystem.Pages
             this.btnRemoveClient.FlatAppearance.BorderSize = 0;
             this.btnRemoveClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveClient.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveClient.Location = new System.Drawing.Point(273, 388);
+            this.btnRemoveClient.Location = new System.Drawing.Point(273, 439);
             this.btnRemoveClient.Name = "btnRemoveClient";
             this.btnRemoveClient.Size = new System.Drawing.Size(100, 30);
             this.btnRemoveClient.TabIndex = 3;
@@ -257,7 +272,6 @@ namespace ManagementSystem.Pages
             this.btnRemoveClient.UseVisualStyleBackColor = false;
             this.btnRemoveClient.Visible = false;
             this.btnRemoveClient.Click += new System.EventHandler(this.btnRemoveClient_Click);
-            // 
             // 
             // panelTop
             // 
@@ -297,7 +311,10 @@ namespace ManagementSystem.Pages
             // 
             // panelMain
             // 
-            this.panelMain.Controls.Add(this.dgvClients);
+            this.panelMain.Controls.Add(this.lvClients);
+            this.panelMain.Controls.Add(this.lblSearch);
+            this.panelMain.Controls.Add(this.txtSearch);
+            this.panelMain.Controls.Add(this.btnSearch);
             this.panelMain.Controls.Add(this.btnAddClient);
             this.panelMain.Controls.Add(this.btnEditClient);
             this.panelMain.Controls.Add(this.btnRemoveClient);
@@ -311,22 +328,89 @@ namespace ManagementSystem.Pages
             this.panelMain.Size = new System.Drawing.Size(840, 492);
             this.panelMain.TabIndex = 2;
             // 
-            // dgvClients
+            // lvClients
             // 
-            this.dgvClients.BackgroundColor = System.Drawing.Color.White;
-            this.dgvClients.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvClients.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClients.EnableHeadersVisualStyles = false;
-            this.dgvClients.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvClients.Location = new System.Drawing.Point(47, 70);
-            this.dgvClients.Name = "dgvClients";
-            this.dgvClients.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvClients.RowHeadersWidth = 51;
-            this.dgvClients.RowTemplate.Height = 24;
-            this.dgvClients.Size = new System.Drawing.Size(742, 300);
-            this.dgvClients.TabIndex = 0;
-            this.dgvClients.Visible = false;
+            this.lvClients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chId,
+            this.chName,
+            this.chEmail,
+            this.chPhone,
+            this.chNif,
+            this.chAddress});
+            this.lvClients.FullRowSelect = true;
+            this.lvClients.GridLines = true;
+            this.lvClients.HideSelection = false;
+            this.lvClients.Location = new System.Drawing.Point(47, 47);
+            this.lvClients.Name = "lvClients";
+            this.lvClients.Size = new System.Drawing.Size(742, 319);
+            this.lvClients.TabIndex = 0;
+            this.lvClients.UseCompatibleStateImageBehavior = false;
+            this.lvClients.View = System.Windows.Forms.View.Details;
+            this.lvClients.Visible = false;
+            // 
+            // chId
+            // 
+            this.chId.Text = "ID";
+            this.chId.Width = 50;
+            // 
+            // chName
+            // 
+            this.chName.Text = "Name";
+            this.chName.Width = 150;
+            // 
+            // chEmail
+            // 
+            this.chEmail.Text = "Email";
+            this.chEmail.Width = 150;
+            // 
+            // chPhone
+            // 
+            this.chPhone.Text = "Phone";
+            this.chPhone.Width = 100;
+            // 
+            // chNif
+            // 
+            this.chNif.Text = "NIF";
+            this.chNif.Width = 100;
+            // 
+            // chAddress
+            // 
+            this.chAddress.Text = "Address";
+            this.chAddress.Width = 150;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(395, 424);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(64, 16);
+            this.lblSearch.TabIndex = 6;
+            this.lblSearch.Text = "Client Info";
+            this.lblSearch.Visible = false;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(398, 443);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(207, 22);
+            this.txtSearch.TabIndex = 5;
+            this.txtSearch.Visible = false;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(620, 439);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 30);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Visible = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblCustomers
             // 
@@ -379,9 +463,13 @@ namespace ManagementSystem.Pages
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.panelTop.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
+            this.panelMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
+
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
