@@ -70,34 +70,39 @@ namespace ManagementSystem.Pages
             return username;
         }
 
+        // Function to set components visibility
+        private void SetVisibility(bool visible, params Control[] controls)
+        {
+            foreach (var control in controls)
+            {
+                control.Visible = visible;
+            }
+        }
+
+        // Function to Hide Components
+        private void HideComponents(params Control[] controls)
+        {
+            SetVisibility(false, controls);
+        }
+
+        // Function to Show Components
+        private void ShowComponents(params Control[] controls)
+        {
+            SetVisibility(true, controls);
+        }
+
         private void btnClients_Click(object sender, EventArgs e)
         {
             LoadClients();
-            lvClients.Visible = true;
-            btnAddClient.Visible = true;
-            btnEditClient.Visible = true;
-            btnRemoveClient.Visible = true;
-            lblSearch.Visible = true;
-            txtSearch.Visible = true;
-            btnSearch.Visible = true;
-
-            // Other Components
-            lvStock.Visible = false;
+            ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
+            HideComponents(lvStock);
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
             LoadStock();
-            lvStock.Visible = true;
-
-            // Other Components
-            lvClients.Visible = false;
-            btnAddClient.Visible = false;
-            btnEditClient.Visible = false;
-            btnRemoveClient.Visible = false;
-            lblSearch.Visible = false;
-            txtSearch.Visible = false;
-            btnSearch.Visible = false;
+            ShowComponents(lvStock);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
         }
 
         // Load clients function
@@ -225,18 +230,8 @@ namespace ManagementSystem.Pages
 
 
         private void btnHome_Click(object sender, EventArgs e) 
-        { 
-            // Client Page
-            lvClients.Visible = false;
-            btnAddClient.Visible = false;
-            btnEditClient.Visible = false;
-            btnRemoveClient.Visible = false;
-            lblSearch.Visible = false;
-            txtSearch.Visible = false;
-            btnSearch.Visible = false;
-
-            // Stock Page
-            lvStock.Visible = false;
+        {
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
