@@ -16,6 +16,7 @@ namespace ManagementSystem.Pages
             LoadClientData();
         }
 
+        // Function to Load the client data
         private void LoadClientData()
         {
             try
@@ -23,21 +24,7 @@ namespace ManagementSystem.Pages
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT Name, Email, Nif, Phone, Address FROM Clients WHERE Id=@id";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@id", clientId);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            txtName.Text = reader["Name"].ToString();
-                            txtEmail.Text = reader["Email"].ToString();
-                            txtNif.Text = reader["Nif"].ToString();
-                            txtPhone.Text = reader["Phone"].ToString();
-                            txtAddress.Text = reader["Address"].ToString();
-                        }
-                    }
+                    GetClientData(conn);
                 }
             }
             catch (Exception ex)
@@ -53,15 +40,15 @@ namespace ManagementSystem.Pages
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE Clients SET Name=@name, Email=@email, Nif=@nif, Phone=@phone, Address=@address WHERE Id=@id";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", txtName.Text);
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@nif", txtNif.Text);
-                    cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
-                    cmd.Parameters.AddWithValue("@address", txtAddress.Text);
-                    cmd.Parameters.AddWithValue("@id", clientId);
-                    cmd.ExecuteNonQuery();
+
+                    string errors = CheckUsersFields(conn);
+                    if (!string.IsNullOrEmpty(errors))
+                    {
+                        MessageBox.Show($"Client with the same {errors} already exists.");
+                        return;
+                    }
+
+                    UpdateClient(conn);
                 }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -69,6 +56,69 @@ namespace ManagementSystem.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        // Function to if exists a user with that value in a certain field
+        private int CheckExistingField(MySqlConnection conn, string fieldName, string fieldValue)
+        {
+            string checkQuery = $"SELECT COUNT(*) FROM Clients WHERE {fieldName} = @fieldValue AND Id != @clientId";
+            MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
+            checkCmd.Parameters.AddWithValue("@fieldValue", fieldValue);
+            checkCmd.Parameters.AddWithValue("@clientId", clientId);
+            return Convert.ToInt32(checkCmd.ExecuteScalar());
+        }
+
+        // Function to check the fields
+        private string CheckUsersFields(MySqlConnection conn)
+        {
+            string errors = "";
+            if (CheckExistingField(conn, "Email", txtEmail.Text) > 0)
+            {
+                errors += "Email ";
+            }
+            if (CheckExistingField(conn, "Nif", txtNif.Text) > 0)
+            {
+                errors += "NIF ";
+            }
+            if (CheckExistingField(conn, "Phone", txtPhone.Text) > 0)
+            {
+                errors += "Phone ";
+            }
+            return errors.Trim();
+        }
+
+        // Function to update user data
+        private void UpdateClient(MySqlConnection conn) 
+        {
+            string query = "UPDATE Clients SET Name=@name, Email=@email, Nif=@nif, Phone=@phone, Address=@address WHERE Id=@id";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@name", txtName.Text);
+            cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+            cmd.Parameters.AddWithValue("@nif", txtNif.Text);
+            cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
+            cmd.Parameters.AddWithValue("@address", txtAddress.Text);
+            cmd.Parameters.AddWithValue("@id", clientId);
+            cmd.ExecuteNonQuery();
+        }
+
+        // Function to get the client data by id
+        private void GetClientData(MySqlConnection conn) 
+        {
+            string query = "SELECT Name, Email, Nif, Phone, Address FROM Clients WHERE Id=@id";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", clientId);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    txtName.Text = reader["Name"].ToString();
+                    txtEmail.Text = reader["Email"].ToString();
+                    txtNif.Text = reader["Nif"].ToString();
+                    txtPhone.Text = reader["Phone"].ToString();
+                    txtAddress.Text = reader["Address"].ToString();
+                }
             }
         }
 
