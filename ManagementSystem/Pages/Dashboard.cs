@@ -126,6 +126,7 @@ namespace ManagementSystem.Pages
                         item.SubItems.Add(reader["Quantity"].ToString());
 
                         lvStock.Items.Add(item);
+                        CheckLowStock();
                     }
                 }
             }
@@ -278,13 +279,13 @@ namespace ManagementSystem.Pages
         {
             LoadClients();
             ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            HideComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
             LoadStock();
-            ShowComponents(lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
+            ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
             HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
             CheckLowStock();
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
@@ -350,7 +351,7 @@ namespace ManagementSystem.Pages
 
         private void btnHome_Click(object sender, EventArgs e) 
         {
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -393,6 +394,23 @@ namespace ManagementSystem.Pages
                         itemFound = true;
                     }
                 }
+            }
+        }
+
+        private void btnAddStock_Click(object sender, EventArgs e) 
+        {
+            if (lvStock.SelectedItems.Count > 0)
+            {
+                int bookId = Convert.ToInt32(lvStock.SelectedItems[0].SubItems[0].Text);
+                AddStockForm addStockForm = new AddStockForm(this.userId, bookId);
+                if (addStockForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadStock();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a book to add stock.");
             }
         }
 

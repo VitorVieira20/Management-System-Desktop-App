@@ -28,6 +28,7 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnAddStock;
         private System.Windows.Forms.Label lblStockSearch;
         private System.Windows.Forms.TextBox txtStockSearch;
         private System.Windows.Forms.Button btnStockSearch;
@@ -92,6 +93,7 @@ namespace ManagementSystem.Pages
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnAddStock = new System.Windows.Forms.Button();
             this.lblStockSearch = new System.Windows.Forms.Label();
             this.txtStockSearch = new System.Windows.Forms.TextBox();
             this.btnStockSearch = new System.Windows.Forms.Button();
@@ -341,6 +343,7 @@ namespace ManagementSystem.Pages
             this.panelMain.Controls.Add(this.lblSearch);
             this.panelMain.Controls.Add(this.txtSearch);
             this.panelMain.Controls.Add(this.btnSearch);
+            this.panelMain.Controls.Add(this.btnAddStock);
             this.panelMain.Controls.Add(this.lblStockSearch);
             this.panelMain.Controls.Add(this.txtStockSearch);
             this.panelMain.Controls.Add(this.btnStockSearch);
@@ -486,6 +489,22 @@ namespace ManagementSystem.Pages
             // 
             this.chBookStock.Text = "Stock";
             this.chBookStock.Width = 50;
+            // 
+            // btnAddStock
+            // 
+            this.btnAddStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnAddStock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddStock.FlatAppearance.BorderSize = 0;
+            this.btnAddStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddStock.ForeColor = System.Drawing.Color.White;
+            this.btnAddStock.Location = new System.Drawing.Point(47, 439);
+            this.btnAddStock.Name = "btnAddClient";
+            this.btnAddStock.Size = new System.Drawing.Size(100, 30);
+            this.btnAddStock.TabIndex = 1;
+            this.btnAddStock.Text = "Add Stock";
+            this.btnAddStock.UseVisualStyleBackColor = false;
+            this.btnAddStock.Visible = false;
+            this.btnAddStock.Click += new System.EventHandler(this.btnAddStock_Click);
             // 
             // lblStockSearch
             // 

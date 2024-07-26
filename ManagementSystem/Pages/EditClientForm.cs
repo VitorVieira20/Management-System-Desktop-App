@@ -65,7 +65,7 @@ namespace ManagementSystem.Pages
             string checkQuery = $"SELECT COUNT(*) FROM Clients WHERE {fieldName} = @fieldValue AND Id != @clientId";
             MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
             checkCmd.Parameters.AddWithValue("@fieldValue", fieldValue);
-            checkCmd.Parameters.AddWithValue("@clientId", clientId);
+            checkCmd.Parameters.AddWithValue("@clientId", this.clientId);
             return Convert.ToInt32(checkCmd.ExecuteScalar());
         }
 
@@ -98,7 +98,7 @@ namespace ManagementSystem.Pages
             cmd.Parameters.AddWithValue("@nif", txtNif.Text);
             cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
             cmd.Parameters.AddWithValue("@address", txtAddress.Text);
-            cmd.Parameters.AddWithValue("@id", clientId);
+            cmd.Parameters.AddWithValue("@id", this.clientId);
             cmd.ExecuteNonQuery();
         }
 
@@ -107,7 +107,7 @@ namespace ManagementSystem.Pages
         {
             string query = "SELECT Name, Email, Nif, Phone, Address FROM Clients WHERE Id=@id";
             MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@id", clientId);
+            cmd.Parameters.AddWithValue("@id", this.clientId);
 
             using (MySqlDataReader reader = cmd.ExecuteReader())
             {

@@ -126,6 +126,12 @@
     <Compile Include="Pages\AddClientForm.Designer.cs">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\AddStockForm.Designer.cs">
+      <DependentUpon>AddStockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Pages\AddClientForm.resx">
       <DependentUpon>AddClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AddStockForm.resx">
+      <DependentUpon>AddStockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
