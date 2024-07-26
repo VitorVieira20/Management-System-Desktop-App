@@ -13,11 +13,6 @@ namespace ManagementSystem.Pages
             InitializeComponent();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
             login_username.KeyDown += new KeyEventHandler(LoginFields_KeyDown);

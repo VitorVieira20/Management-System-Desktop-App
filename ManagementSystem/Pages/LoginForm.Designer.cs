@@ -121,7 +121,6 @@ namespace ManagementSystem.Pages
             this.label5.Size = new System.Drawing.Size(151, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "Register your Account";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // exit
             // 
