@@ -10,7 +10,7 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Button btnPurchases;
+        private System.Windows.Forms.Button btnSales;
         private System.Windows.Forms.Button btnClients;
         private System.Windows.Forms.Button btnAddClient;
         private System.Windows.Forms.Button btnEditClient;
@@ -69,7 +69,7 @@ namespace ManagementSystem.Pages
             this.btnRequests = new System.Windows.Forms.Button();
             this.btnStock = new System.Windows.Forms.Button();
             this.btnClients = new System.Windows.Forms.Button();
-            this.btnPurchases = new System.Windows.Forms.Button();
+            this.btnSales = new System.Windows.Forms.Button();
             this.btnAddClient = new System.Windows.Forms.Button();
             this.btnEditClient = new System.Windows.Forms.Button();
             this.btnRemoveClient = new System.Windows.Forms.Button();
@@ -123,7 +123,7 @@ namespace ManagementSystem.Pages
             this.panelLeft.Controls.Add(this.btnRequests);
             this.panelLeft.Controls.Add(this.btnStock);
             this.panelLeft.Controls.Add(this.btnClients);
-            this.panelLeft.Controls.Add(this.btnPurchases);
+            this.panelLeft.Controls.Add(this.btnSales);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
@@ -237,20 +237,20 @@ namespace ManagementSystem.Pages
             this.btnClients.UseVisualStyleBackColor = true;
             this.btnClients.Click += new System.EventHandler(this.btnClients_Click);
             // 
-            // btnPurchases
+            // btnSales
             // 
-            this.btnPurchases.FlatAppearance.BorderSize = 0;
-            this.btnPurchases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPurchases.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnPurchases.ForeColor = System.Drawing.Color.White;
-            this.btnPurchases.Location = new System.Drawing.Point(0, 199);
-            this.btnPurchases.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPurchases.Name = "btnPurchases";
-            this.btnPurchases.Size = new System.Drawing.Size(267, 37);
-            this.btnPurchases.TabIndex = 3;
-            this.btnPurchases.Text = "Purchases";
-            this.btnPurchases.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurchases.UseVisualStyleBackColor = true;
+            this.btnSales.FlatAppearance.BorderSize = 0;
+            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSales.ForeColor = System.Drawing.Color.White;
+            this.btnSales.Location = new System.Drawing.Point(0, 199);
+            this.btnSales.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(267, 37);
+            this.btnSales.TabIndex = 3;
+            this.btnSales.Text = "Sales";
+            this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSales.UseVisualStyleBackColor = true;
             // 
             // btnAddClient
             // 

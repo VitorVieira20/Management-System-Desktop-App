@@ -7,17 +7,27 @@ using System.Windows.Forms;
 
 namespace ManagementSystem.Pages
 {
+    /// <summary>
+    /// Main form for the Dashboard.
+    /// </summary>
     public partial class Dashboard : Form
     {
         private int userId;
         string connectionString = Configuration.ConnectionString;
 
+        /// /// <summary>
+        /// Initializes a new instance of the <see cref="Dashboard"/> class.
+        /// </summary>
+        /// <param name="userId">ID of the logged-in user.</param>
         public Dashboard(int userId)
         {
             InitializeComponent();
             this.userId = userId;
         }
 
+        /// <summary>
+        /// Event triggered when the form is loaded.
+        /// </summary>
         private void Dashboard_Load(object sender, EventArgs e)
         {
             lblWelcome.Text = "Welcome, " + GetUsernameById(userId);
@@ -25,6 +35,9 @@ namespace ManagementSystem.Pages
             timer1.Start();
         }
 
+        /// <summary>
+        /// Updates the dashboard data.
+        /// </summary>
         private void UpdateDashboardData()
         {
             lblSoldBooks.Text = "1000"; /* GetBooksSold */
@@ -32,15 +45,21 @@ namespace ManagementSystem.Pages
             lblCustomers.Text = GetClientsCount();
         }
 
-        
-        // Get time function
+
+        /// <summary>
+        /// Event triggered by the timer to update the current time.
+        /// </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("HH:mm");
         }
 
 
-        // Function to set components visibility
+        /// <summary>
+        /// Sets the visibility of multiple controls.
+        /// </summary>
+        /// <param name="visible">Visibility state.</param>
+        /// <param name="controls">Array of controls to set visibility.</param>
         private void SetVisibility(bool visible, params Control[] controls)
         {
             foreach (var control in controls)
@@ -49,19 +68,27 @@ namespace ManagementSystem.Pages
             }
         }
 
-        // Function to Hide Components
+        /// <summary>
+        /// Hides multiple controls.
+        /// </summary>
+        /// <param name="controls">Array of controls to hide.</param>
         private void HideComponents(params Control[] controls)
         {
             SetVisibility(false, controls);
         }
 
-        // Function to Show Components
+        /// <summary>
+        /// Shows multiple controls.
+        /// </summary>
+        /// <param name="controls">Array of controls to show.</param>
         private void ShowComponents(params Control[] controls)
         {
             SetVisibility(true, controls);
         }
 
-        // Load clients function
+        /// <summary>
+        /// Loads the clients into the list view.
+        /// </summary>
         private void LoadClients()
         {
             try
@@ -94,7 +121,9 @@ namespace ManagementSystem.Pages
             }
         }
 
-        // Load stock function
+        /// <summary>
+        /// Loads the stock into the list view.
+        /// </summary>
         private void LoadStock()
         {
             try
@@ -136,7 +165,11 @@ namespace ManagementSystem.Pages
             }
         }
 
-        // Function to get a Username by ID
+        /// <summary>
+        /// Gets the username by user ID.
+        /// </summary>
+        /// <param name="userId">ID of the user.</param>
+        /// <returns>Username of the user.</returns>
         private string GetUsernameById(int userId)
         {
             string username = null;
@@ -168,7 +201,10 @@ namespace ManagementSystem.Pages
             return username;
         }
 
-        // Function to get count of clients
+        /// <summary>
+        /// Gets the count of clients.
+        /// </summary>
+        /// <returns>Count of clients as a string.</returns>
         private string GetClientsCount() 
         {
             try
@@ -189,7 +225,9 @@ namespace ManagementSystem.Pages
             }
         }
 
-        // Check if the book stock is low
+        /// <summary>
+        /// Checks if the book stock is low and updates the list view item color.
+        /// </summary>
         private void CheckLowStock()
         {
 
@@ -202,7 +240,10 @@ namespace ManagementSystem.Pages
             }
         }
 
-        // Order Stock by quantity
+        /// <summary>
+        /// Sorts the stock by quantity.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
         private void SortStockByQuantity(bool ascending)
         {
             var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item =>
@@ -220,7 +261,10 @@ namespace ManagementSystem.Pages
             lvStock.Items.AddRange(items.ToArray());
         }
 
-        // Order Stock by book title
+        /// <summary>
+        /// Sorts the stock by book title.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
         private void SortStockByTitle(bool ascending)
         {
             var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[1].Text).ToList();
@@ -234,7 +278,10 @@ namespace ManagementSystem.Pages
             lvStock.Items.AddRange(items.ToArray());
         }
 
-        // Order Stock by book publish date
+        /// <summary>
+        /// Sorts the stock by book publish date.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
         private void SortStockByPublishDate(bool ascending)
         {
             var items = lvStock.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[3].Text).ToList();
@@ -248,7 +295,9 @@ namespace ManagementSystem.Pages
             lvStock.Items.AddRange(items.ToArray());
         }
 
-        // Switch case to choose the filter
+        /// <summary>
+        /// Handles the selected index change event of the stock filter combo box.
+        /// </summary>
         private void cmbStockFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cmbStockFilter.SelectedIndex)
@@ -275,6 +324,9 @@ namespace ManagementSystem.Pages
             CheckLowStock();
         }
 
+        /// <summary>
+        /// Loads clients view and shows the related controls.
+        /// </summary>
         private void btnClients_Click(object sender, EventArgs e)
         {
             LoadClients();
@@ -282,6 +334,9 @@ namespace ManagementSystem.Pages
             HideComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
+        /// <summary>
+        /// Loads stock view and shows the related controls.
+        /// </summary>
         private void btnStock_Click(object sender, EventArgs e)
         {
             LoadStock();
@@ -291,6 +346,17 @@ namespace ManagementSystem.Pages
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
 
+        /// <summary>
+        /// Hides all controls when the Home button is clicked.
+        /// </summary>
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+        }
+
+        /// <summary>
+        /// Opens the Add Client form.
+        /// </summary>
         private void btnAddClient_Click(object sender, EventArgs e)
         {
             AddClientForm addClientForm = new AddClientForm();
@@ -300,6 +366,9 @@ namespace ManagementSystem.Pages
             }
         }
 
+        /// <summary>
+        /// Opens the Edit Client form for the selected client.
+        /// </summary>
         private void btnEditClient_Click(object sender, EventArgs e)
         {
             if (lvClients.SelectedItems.Count > 0)
@@ -317,6 +386,9 @@ namespace ManagementSystem.Pages
             }
         }
 
+        /// <summary>
+        /// Removes the selected client.
+        /// </summary>
         private void btnRemoveClient_Click(object sender, EventArgs e)
         {
             if (lvClients.SelectedItems.Count > 0)
@@ -349,11 +421,9 @@ namespace ManagementSystem.Pages
             }
         }
 
-        private void btnHome_Click(object sender, EventArgs e) 
-        {
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
-        }
-
+        /// <summary>
+        /// Searches for clients based on the search text.
+        /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim().ToLower();
@@ -377,6 +447,9 @@ namespace ManagementSystem.Pages
             }
         }
 
+        /// <summary>
+        /// Searches for stock items based on the search text.
+        /// </summary>
         private void btnStockSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtStockSearch.Text.Trim().ToLower();
@@ -397,6 +470,9 @@ namespace ManagementSystem.Pages
             }
         }
 
+        /// <summary>
+        /// Opens the Add Stock form for the selected book.
+        /// </summary>
         private void btnAddStock_Click(object sender, EventArgs e) 
         {
             if (lvStock.SelectedItems.Count > 0)
@@ -414,6 +490,9 @@ namespace ManagementSystem.Pages
             }
         }
 
+        /// <summary>
+        /// Logs out the user and shows the login form.
+        /// </summary>
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
