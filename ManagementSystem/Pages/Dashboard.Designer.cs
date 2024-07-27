@@ -10,12 +10,6 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Button btnSales;
-        private System.Windows.Forms.Button btnClients;
-        private System.Windows.Forms.Button btnAddClient;
-        private System.Windows.Forms.Button btnEditClient;
-        private System.Windows.Forms.Button btnRemoveClient;
-        private System.Windows.Forms.Button btnStock;
         private System.Windows.Forms.Button btnRequests;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lblSoldBooks;
@@ -25,20 +19,29 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox picLogo;
+
+        // Clients
+        private System.Windows.Forms.Button btnClients;
+        private System.Windows.Forms.Button btnAddClient;
+        private System.Windows.Forms.Button btnEditClient;
+        private System.Windows.Forms.Button btnRemoveClient;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnAddStock;
-        private System.Windows.Forms.Label lblStockSearch;
-        private System.Windows.Forms.TextBox txtStockSearch;
-        private System.Windows.Forms.Button btnStockSearch;
         private System.Windows.Forms.ListView lvClients;
         private System.Windows.Forms.ColumnHeader chId;
         private System.Windows.Forms.ColumnHeader chName;
         private System.Windows.Forms.ColumnHeader chEmail;
         private System.Windows.Forms.ColumnHeader chPhone;
         private System.Windows.Forms.ColumnHeader chNif;
-        private System.Windows.Forms.ColumnHeader chAddress; 
+        private System.Windows.Forms.ColumnHeader chAddress;
+
+        // Stock
+        private System.Windows.Forms.Button btnStock;
+        private System.Windows.Forms.Button btnAddStock;
+        private System.Windows.Forms.Label lblStockSearch;
+        private System.Windows.Forms.TextBox txtStockSearch;
+        private System.Windows.Forms.Button btnStockSearch;
         private System.Windows.Forms.ListView lvStock;
         private System.Windows.Forms.ColumnHeader chBookId;
         private System.Windows.Forms.ColumnHeader chBookTitle;
@@ -47,6 +50,10 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.ColumnHeader chBookPublishDate;
         private System.Windows.Forms.ComboBox cmbStockFilter;
         private System.Windows.Forms.Label lblStockFilter;
+
+        // Sales
+        private System.Windows.Forms.Button btnSales;
+        private System.Windows.Forms.Button btnAddSales;
 
         protected override void Dispose(bool disposing)
         {
@@ -59,6 +66,43 @@ namespace ManagementSystem.Pages
 
         private void InitializeComponent()
         {
+            // Clients
+            this.btnClients = new System.Windows.Forms.Button();
+            this.btnAddClient = new System.Windows.Forms.Button();
+            this.btnEditClient = new System.Windows.Forms.Button();
+            this.btnRemoveClient = new System.Windows.Forms.Button();
+            this.lvClients = new System.Windows.Forms.ListView(); ;
+            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chNif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+
+            // Stock
+            this.btnStock = new System.Windows.Forms.Button();
+            this.lvStock = new System.Windows.Forms.ListView();
+            this.chBookId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookPublishDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAddStock = new System.Windows.Forms.Button();
+            this.lblStockSearch = new System.Windows.Forms.Label();
+            this.txtStockSearch = new System.Windows.Forms.TextBox();
+            this.btnStockSearch = new System.Windows.Forms.Button();
+            this.cmbStockFilter = new System.Windows.Forms.ComboBox();
+            this.lblStockFilter = new System.Windows.Forms.Label();
+
+            // Sales
+            this.btnSales = new System.Windows.Forms.Button();
+            this.btnAddSales = new System.Windows.Forms.Button();
+
+            
+            // Others
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLeft = new System.Windows.Forms.Panel();
@@ -67,38 +111,10 @@ namespace ManagementSystem.Pages
             this.btnReports = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnRequests = new System.Windows.Forms.Button();
-            this.btnStock = new System.Windows.Forms.Button();
-            this.btnClients = new System.Windows.Forms.Button();
-            this.btnSales = new System.Windows.Forms.Button();
-            this.btnAddClient = new System.Windows.Forms.Button();
-            this.btnEditClient = new System.Windows.Forms.Button();
-            this.btnRemoveClient = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.lvClients = new System.Windows.Forms.ListView();;
-            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chNif = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvStock = new System.Windows.Forms.ListView();
-            this.chBookId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookPublishDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnAddStock = new System.Windows.Forms.Button();
-            this.lblStockSearch = new System.Windows.Forms.Label();
-            this.txtStockSearch = new System.Windows.Forms.TextBox();
-            this.btnStockSearch = new System.Windows.Forms.Button();
-            this.cmbStockFilter = new System.Windows.Forms.ComboBox();
-            this.lblStockFilter = new System.Windows.Forms.Label();
             this.lblCustomers = new System.Windows.Forms.Label();
             this.lblPurchasedBooks = new System.Windows.Forms.Label();
             this.lblSoldBooks = new System.Windows.Forms.Label();
@@ -251,6 +267,23 @@ namespace ManagementSystem.Pages
             this.btnSales.Text = "Sales";
             this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            // 
+            // btnAddSales
+            // 
+            this.btnAddSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnAddSales.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddSales.FlatAppearance.BorderSize = 0;
+            this.btnAddSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddSales.ForeColor = System.Drawing.Color.White;
+            this.btnAddSales.Location = new System.Drawing.Point(47, 439);
+            this.btnAddSales.Name = "btnAddClient";
+            this.btnAddSales.Size = new System.Drawing.Size(100, 30);
+            this.btnAddSales.TabIndex = 1;
+            this.btnAddSales.Text = "Add";
+            this.btnAddSales.UseVisualStyleBackColor = false;
+            this.btnAddSales.Visible = false;
+            this.btnAddSales.Click += new System.EventHandler(this.btnAddSales_Click);
             // 
             // btnAddClient
             // 
@@ -355,6 +388,7 @@ namespace ManagementSystem.Pages
             this.panelMain.Controls.Add(this.lblSoldBooks);
             this.panelMain.Controls.Add(this.lblStockFilter);
             this.panelMain.Controls.Add(this.cmbStockFilter);
+            this.panelMain.Controls.Add(this.btnAddSales);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(227, 62);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4);

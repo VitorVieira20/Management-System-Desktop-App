@@ -331,7 +331,7 @@ namespace ManagementSystem.Pages
         {
             LoadClients();
             ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            HideComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales);
         }
 
         /// <summary>
@@ -341,9 +341,18 @@ namespace ManagementSystem.Pages
         {
             LoadStock();
             ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales);
             CheckLowStock();
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// Loads sales view and shows the related controls.
+        /// </summary>
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            ShowComponents(btnAddSales);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         /// <summary>
@@ -351,7 +360,7 @@ namespace ManagementSystem.Pages
         /// </summary>
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales);
         }
 
         /// <summary>
@@ -487,6 +496,18 @@ namespace ManagementSystem.Pages
             else
             {
                 MessageBox.Show("Please select a book to add stock.");
+            }
+        }
+
+        /// <summary>
+        /// Opens the Add Sales form.
+        /// </summary>
+        private void btnAddSales_Click(object sender, EventArgs e)
+        {
+            AddSalesForm addSalesForm = new AddSalesForm();
+            if (addSalesForm.ShowDialog() == DialogResult.OK)
+            {
+                //LoadClients();
             }
         }
 

@@ -126,6 +126,12 @@
     <Compile Include="Pages\AddClientForm.Designer.cs">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddSalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\AddSalesForm.Designer.cs">
+      <DependentUpon>AddSalesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,12 @@
     <Compile Include="Pages\EditClientForm.Designer.cs">
       <DependentUpon>EditClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InputBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\InputBoxForm.Designer.cs">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +173,9 @@
     <EmbeddedResource Include="Pages\AddClientForm.resx">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AddSalesForm.resx">
+      <DependentUpon>AddSalesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\AddStockForm.resx">
       <DependentUpon>AddStockForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\EditClientForm.resx">
       <DependentUpon>EditClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InputBoxForm.resx">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
