@@ -87,6 +87,54 @@ namespace ManagementSystem.Pages
         }
 
         /// <summary>
+        /// Loads the stock into the list view.
+        /// </summary>
+        private void LoadSales()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT s.id, c.name, s.date, SUM(i.quantity) as books_amount, s.total_amount FROM Sales s " +
+                        "INNER JOIN Clients c ON s.client_id = c.id " +
+                        "INNER JOIN Sales_items i ON s.id = sales_id " +
+                        "GROUP BY s.id " +
+                        "ORDER BY s.date";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    lvSales.Items.Clear();
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["Id"].ToString());
+                        item.SubItems.Add(reader["Name"].ToString());
+
+                        if (DateTime.TryParse(reader["Date"].ToString(), out DateTime publishDate))
+                        {
+                            string formattedDate = publishDate.ToString("dd/MM/yyyy");
+                            item.SubItems.Add(formattedDate);
+                        }
+                        else
+                        {
+                            item.SubItems.Add("Data inválida");
+                        }
+                        item.SubItems.Add(reader["Books_amount"].ToString());
+                        item.SubItems.Add(reader["Total_amount"].ToString());
+
+                        lvSales.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Loads the clients into the list view.
         /// </summary>
         private void LoadClients()
@@ -331,7 +379,7 @@ namespace ManagementSystem.Pages
         {
             LoadClients();
             ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales);
+            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
         }
 
         /// <summary>
@@ -341,7 +389,7 @@ namespace ManagementSystem.Pages
         {
             LoadStock();
             ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales);
+            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales);
             CheckLowStock();
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -351,8 +399,9 @@ namespace ManagementSystem.Pages
         /// </summary>
         private void btnSales_Click(object sender, EventArgs e)
         {
-            ShowComponents(btnAddSales);
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            LoadSales();
+            ShowComponents(btnAddSales, lvSales);
+            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         /// <summary>
@@ -360,7 +409,8 @@ namespace ManagementSystem.Pages
         /// </summary>
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales);
+            ShowComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
         }
 
         /// <summary>

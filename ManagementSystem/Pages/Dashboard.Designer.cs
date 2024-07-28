@@ -54,6 +54,12 @@ namespace ManagementSystem.Pages
         // Sales
         private System.Windows.Forms.Button btnSales;
         private System.Windows.Forms.Button btnAddSales;
+        private System.Windows.Forms.ListView lvSales;
+        private System.Windows.Forms.ColumnHeader chSalesId;
+        private System.Windows.Forms.ColumnHeader chClientName;
+        private System.Windows.Forms.ColumnHeader chSalesDate;
+        private System.Windows.Forms.ColumnHeader chBookAmount;
+        private System.Windows.Forms.ColumnHeader chTotalPrice;
 
         protected override void Dispose(bool disposing)
         {
@@ -100,8 +106,14 @@ namespace ManagementSystem.Pages
             // Sales
             this.btnSales = new System.Windows.Forms.Button();
             this.btnAddSales = new System.Windows.Forms.Button();
+            this.lvSales = new System.Windows.Forms.ListView();
+            this.chSalesId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chClientName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSalesDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTotalPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 
-            
+
             // Others
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -280,10 +292,54 @@ namespace ManagementSystem.Pages
             this.btnAddSales.Name = "btnAddClient";
             this.btnAddSales.Size = new System.Drawing.Size(100, 30);
             this.btnAddSales.TabIndex = 1;
-            this.btnAddSales.Text = "Add";
+            this.btnAddSales.Text = "Add Sale";
             this.btnAddSales.UseVisualStyleBackColor = false;
             this.btnAddSales.Visible = false;
             this.btnAddSales.Click += new System.EventHandler(this.btnAddSales_Click);
+            // 
+            // lvSales
+            // 
+            this.lvSales.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chSalesId,
+            this.chClientName,
+            this.chSalesDate,
+            this.chBookAmount,
+            this.chTotalPrice});
+            this.lvSales.FullRowSelect = true;
+            this.lvSales.GridLines = true;
+            this.lvSales.HideSelection = false;
+            this.lvSales.Location = new System.Drawing.Point(47, 47);
+            this.lvSales.Name = "lvSales";
+            this.lvSales.Size = new System.Drawing.Size(742, 319);
+            this.lvSales.TabIndex = 0;
+            this.lvSales.UseCompatibleStateImageBehavior = false;
+            this.lvSales.View = System.Windows.Forms.View.Details;
+            this.lvSales.Visible = false;
+            // 
+            // chSalesId
+            // 
+            this.chSalesId.Text = "ID";
+            this.chSalesId.Width = 50;
+            // 
+            // chClientName
+            // 
+            this.chClientName.Text = "Client Name";
+            this.chClientName.Width = 100;
+            // 
+            // chSalesDate
+            // 
+            this.chSalesDate.Text = "Sale Date";
+            this.chSalesDate.Width = 75;
+            // 
+            // chBookAmount
+            // 
+            this.chBookAmount.Text = "Books Amount";
+            this.chBookAmount.Width = 100;
+            // 
+            // chTotalPrice
+            // 
+            this.chTotalPrice.Text = "Total Price";
+            this.chTotalPrice.Width = 75;
             // 
             // btnAddClient
             // 
@@ -373,6 +429,7 @@ namespace ManagementSystem.Pages
             // 
             this.panelMain.Controls.Add(this.lvClients);
             this.panelMain.Controls.Add(this.lvStock);
+            this.panelMain.Controls.Add(this.lvSales);
             this.panelMain.Controls.Add(this.lblSearch);
             this.panelMain.Controls.Add(this.txtSearch);
             this.panelMain.Controls.Add(this.btnSearch);
