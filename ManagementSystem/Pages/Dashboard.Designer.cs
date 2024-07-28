@@ -63,6 +63,8 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.ColumnHeader chSalesDate;
         private System.Windows.Forms.ColumnHeader chBookAmount;
         private System.Windows.Forms.ColumnHeader chTotalPrice;
+        private System.Windows.Forms.ComboBox cmbSalesFilter;
+        private System.Windows.Forms.Label lblSalesFilter;
 
         protected override void Dispose(bool disposing)
         {
@@ -85,7 +87,7 @@ namespace ManagementSystem.Pages
             this.btnAddClient = new System.Windows.Forms.Button();
             this.btnEditClient = new System.Windows.Forms.Button();
             this.btnRemoveClient = new System.Windows.Forms.Button();
-            this.lvClients = new System.Windows.Forms.ListView(); ;
+            this.lvClients = new System.Windows.Forms.ListView();
             this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -120,6 +122,8 @@ namespace ManagementSystem.Pages
             this.chSalesDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBookAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chTotalPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmbSalesFilter = new System.Windows.Forms.ComboBox();
+            this.lblSalesFilter = new System.Windows.Forms.Label();
 
 
             // Others
@@ -346,6 +350,32 @@ namespace ManagementSystem.Pages
             this.chTotalPrice.Text = "Total Price";
             this.chTotalPrice.Width = 75;
             // 
+            // lblSalesFilter
+            // 
+            this.lblSalesFilter.AutoSize = true;
+            this.lblSalesFilter.Location = new System.Drawing.Point(175, 424);
+            this.lblSalesFilter.Name = "lblSalesFilter";
+            this.lblSalesFilter.Size = new System.Drawing.Size(64, 16);
+            this.lblSalesFilter.TabIndex = 6;
+            this.lblSalesFilter.Text = "Filter";
+            this.lblSalesFilter.Visible = false;
+            // 
+            // cmbSalesFilter
+            // 
+            this.cmbSalesFilter.FormattingEnabled = true;
+            this.cmbSalesFilter.Items.AddRange(new object[] {
+                "Book Amount Ascending",
+                "Book Amount Descending",
+                "Price Ascending",
+                "Price Descending",
+                "Date Ascending",
+                "Date Descending"});
+            this.cmbSalesFilter.Location = new System.Drawing.Point(175, 442);
+            this.cmbSalesFilter.Name = "cmbSalesFilter";
+            this.cmbSalesFilter.Size = new System.Drawing.Size(121, 21);
+            this.cmbSalesFilter.TabIndex = 10;
+            this.cmbSalesFilter.Visible = false;
+            // 
             // btnAddClient
             // 
             this.btnAddClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
@@ -450,6 +480,8 @@ namespace ManagementSystem.Pages
             this.panelMain.Controls.Add(this.lblSoldBooks);
             this.panelMain.Controls.Add(this.lblStockFilter);
             this.panelMain.Controls.Add(this.cmbStockFilter);
+            this.panelMain.Controls.Add(this.lblSalesFilter);
+            this.panelMain.Controls.Add(this.cmbSalesFilter);
             this.panelMain.Controls.Add(this.btnAddSales);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(227, 62);
@@ -640,7 +672,7 @@ namespace ManagementSystem.Pages
             // 
             this.lblStockFilter.AutoSize = true;
             this.lblStockFilter.Location = new System.Drawing.Point(250, 424);
-            this.lblStockFilter.Name = "lblSearch";
+            this.lblStockFilter.Name = "lblStockFilter";
             this.lblStockFilter.Size = new System.Drawing.Size(64, 16);
             this.lblStockFilter.TabIndex = 6;
             this.lblStockFilter.Text = "Filter";

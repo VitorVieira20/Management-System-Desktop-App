@@ -45,7 +45,6 @@ namespace ManagementSystem.Pages
             lblCustomers.Text = GetClientsCount();
         }
 
-
         /// <summary>
         /// Event triggered by the timer to update the current time.
         /// </summary>
@@ -53,7 +52,6 @@ namespace ManagementSystem.Pages
         {
             lblTime.Text = DateTime.Now.ToString("HH:mm");
         }
-
 
         /// <summary>
         /// Sets the visibility of multiple controls.
@@ -419,6 +417,93 @@ namespace ManagementSystem.Pages
             }
             CheckLowStock();
         }
+        
+        /// <summary>
+        /// Sorts the sales by book amount.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
+        private void SortSalesByBookAmount(bool ascending)
+        {
+            var items = lvSales.Items.Cast<ListViewItem>().OrderBy(item =>
+            {
+                int quantity;
+                return int.TryParse(item.SubItems[3].Text, out quantity) ? quantity : 0;
+            }).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvSales.Items.Clear();
+            lvSales.Items.AddRange(items.ToArray());
+        }
+
+        /// <summary>
+        /// Sorts the sales by price.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
+        private void SortSalesByPrice(bool ascending)
+        {
+            var items = lvSales.Items.Cast<ListViewItem>().OrderBy(item =>
+            {
+                decimal price;
+                return decimal.TryParse(item.SubItems[4].Text, out price) ? price : 0;
+            }).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvSales.Items.Clear();
+            lvSales.Items.AddRange(items.ToArray());
+        }
+
+        /// <summary>
+        /// Sorts the sales by date.
+        /// </summary>
+        /// <param name="ascending">If true, sort in ascending order; otherwise, sort in descending order.</param>
+        private void SortSalesByDate(bool ascending)
+        {
+            var items = lvSales.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[2].Text).ToList();
+
+            if (!ascending)
+            {
+                items = items.AsEnumerable().Reverse().ToList();
+            }
+
+            lvSales.Items.Clear();
+            lvSales.Items.AddRange(items.ToArray());
+        }
+
+        /// <summary>
+        /// Handles the selected index change event of the sales filter combo box.
+        /// </summary>
+        private void cmbSalesFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbSalesFilter.SelectedIndex)
+            {
+                case 0:
+                    SortSalesByBookAmount(true);
+                    break;
+                case 1:
+                    SortSalesByBookAmount(false);
+                    break;
+                case 2:
+                    SortSalesByPrice(true);
+                    break;
+                case 3:
+                    SortSalesByPrice(false);
+                    break;
+                case 4:
+                    SortSalesByDate(true);
+                    break;
+                case 5:
+                    SortSalesByDate(false);
+                    break;
+            }
+        }
 
         /// <summary>
         /// Loads clients view and shows the related controls.
@@ -427,7 +512,7 @@ namespace ManagementSystem.Pages
         {
             LoadClients();
             ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
+            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
         }
 
         /// <summary>
@@ -437,7 +522,7 @@ namespace ManagementSystem.Pages
         {
             LoadStock();
             ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales);
+            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
             CheckLowStock();
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -448,8 +533,9 @@ namespace ManagementSystem.Pages
         private void btnSales_Click(object sender, EventArgs e)
         {
             LoadSales();
-            ShowComponents(btnAddSales, lvSales);
+            ShowComponents(btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
             HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            cmbSalesFilter.SelectedIndexChanged += cmbSalesFilter_SelectedIndexChanged;
         }
 
         /// <summary>
@@ -458,7 +544,7 @@ namespace ManagementSystem.Pages
         private void btnHome_Click(object sender, EventArgs e)
         {
             ShowComponents(lblSoldBooks, lblRevenue, lblCustomers);
-            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
+            HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
         }
 
         /// <summary>
@@ -605,7 +691,7 @@ namespace ManagementSystem.Pages
             AddSalesForm addSalesForm = new AddSalesForm();
             if (addSalesForm.ShowDialog() == DialogResult.OK)
             {
-                //LoadClients();
+                // LoadSales();
             }
         }
 
