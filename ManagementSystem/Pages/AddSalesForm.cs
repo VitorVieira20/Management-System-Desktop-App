@@ -14,6 +14,8 @@ namespace ManagementSystem
             InitializeComponent();
             LoadClients();
             LoadBooks();
+
+            btnSearchBook.Click += btnSearch_Click;
         }
 
         private void LoadClients()
@@ -70,6 +72,38 @@ namespace ManagementSystem
             }
         }
 
+        private void SearchBooks(string searchText)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT Id, Title, Author, Publish_date, Price FROM Books " +
+                                   "WHERE Title LIKE @SearchText OR Author LIKE @SearchText";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    lvBooks.Items.Clear();
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["Id"].ToString());
+                        item.SubItems.Add(reader["Title"].ToString());
+                        item.SubItems.Add(reader["Author"].ToString());
+                        item.SubItems.Add(Convert.ToDateTime(reader["Publish_date"]).ToString("dd/MM/yyyy"));
+                        item.SubItems.Add(reader["Price"].ToString());
+                        lvBooks.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
         private int GetQuantityFromUser()
         {
             using (InputBoxForm inputBox = new InputBoxForm("Enter the quantity:"))
@@ -88,14 +122,10 @@ namespace ManagementSystem
                 }
                 else
                 {
-                    // TODO: Fazer com que não seja adicionado à lista de compras
-                    
-                    // Handle cancellation or return a default value if needed
-                    return 0; // Or you could throw an exception or handle it differently
+                    return 0;
                 }
             }
         }
-
 
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
@@ -107,15 +137,22 @@ namespace ManagementSystem
                 decimal price = Convert.ToDecimal(selectedItem.SubItems[4].Text);
                 int quantity = GetQuantityFromUser();
 
-                decimal totalPrice = price * quantity;
+                if (quantity > 0)
+                {
+                    decimal totalPrice = price * quantity;
 
-                ListViewItem cartItem = new ListViewItem(bookId.ToString());
-                cartItem.SubItems.Add(title);
-                cartItem.SubItems.Add(quantity.ToString());
-                cartItem.SubItems.Add(price.ToString());
-                cartItem.SubItems.Add(totalPrice.ToString());
+                    ListViewItem cartItem = new ListViewItem(bookId.ToString());
+                    cartItem.SubItems.Add(title);
+                    cartItem.SubItems.Add(quantity.ToString());
+                    cartItem.SubItems.Add(price.ToString());
+                    cartItem.SubItems.Add(totalPrice.ToString());
 
-                lvCart.Items.Add(cartItem);
+                    lvCart.Items.Add(cartItem);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid quantity entered.");
+                }
             }
             else
             {
@@ -178,7 +215,7 @@ namespace ManagementSystem
                         itemCmd.ExecuteNonQuery();
 
                         // Update stock in Books table
-                        string updateStockQuery = "UPDATE Stock SET Quantity = Quantity - @Quantity WHERE Book_id = @BookId";
+                        string updateStockQuery = "UPDATE Stock SET Quantity = Quantity - @Quantity WHERE Id = @BookId";
                         MySqlCommand updateStockCmd = new MySqlCommand(updateStockQuery, conn, transaction);
                         updateStockCmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(item.SubItems[2].Text));
                         updateStockCmd.Parameters.AddWithValue("@BookId", Convert.ToInt32(item.SubItems[0].Text));
@@ -197,6 +234,20 @@ namespace ManagementSystem
                     }
                     MessageBox.Show("Error: " + ex.Message);
                 }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearchBook.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadBooks();
+            }
+            else
+            {
+                SearchBooks(searchText);
             }
         }
 

@@ -39,6 +39,9 @@
             this.lblClients = new System.Windows.Forms.Label();
             this.lblBooks = new System.Windows.Forms.Label();
             this.lblCart = new System.Windows.Forms.Label();
+            this.btnSearchBook = new System.Windows.Forms.Button();
+            this.txtSearchBook = new System.Windows.Forms.TextBox();
+            this.lblBookInfo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -136,7 +139,7 @@
             this.btnAddToCart.FlatAppearance.BorderSize = 0;
             this.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToCart.ForeColor = System.Drawing.Color.White;
-            this.btnAddToCart.Location = new System.Drawing.Point(720, 200);
+            this.btnAddToCart.Location = new System.Drawing.Point(720, 319);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(100, 30);
             this.btnAddToCart.TabIndex = 6;
@@ -186,12 +189,45 @@
             this.lblCart.TabIndex = 10;
             this.lblCart.Text = "Cart";
             // 
+            // btnSearchBook
+            // 
+            this.btnSearchBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnSearchBook.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchBook.FlatAppearance.BorderSize = 0;
+            this.btnSearchBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchBook.ForeColor = System.Drawing.Color.White;
+            this.btnSearchBook.Location = new System.Drawing.Point(720, 267);
+            this.btnSearchBook.Name = "btnSearchBook";
+            this.btnSearchBook.Size = new System.Drawing.Size(100, 30);
+            this.btnSearchBook.TabIndex = 11;
+            this.btnSearchBook.Text = "Search Book";
+            this.btnSearchBook.UseVisualStyleBackColor = false;
+            // 
+            // txtSearchBook
+            // 
+            this.txtSearchBook.Location = new System.Drawing.Point(720, 220);
+            this.txtSearchBook.Name = "txtSearchBook";
+            this.txtSearchBook.Size = new System.Drawing.Size(100, 24);
+            this.txtSearchBook.TabIndex = 12;
+            // 
+            // lblBookInfo
+            // 
+            this.lblBookInfo.AutoSize = true;
+            this.lblBookInfo.Location = new System.Drawing.Point(717, 200);
+            this.lblBookInfo.Name = "lblBookInfo";
+            this.lblBookInfo.Size = new System.Drawing.Size(67, 17);
+            this.lblBookInfo.TabIndex = 13;
+            this.lblBookInfo.Text = "Book Info";
+            // 
             // AddSalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(854, 600);
+            this.Controls.Add(this.lblBookInfo);
+            this.Controls.Add(this.txtSearchBook);
+            this.Controls.Add(this.btnSearchBook);
             this.Controls.Add(this.lblCart);
             this.Controls.Add(this.lblBooks);
             this.Controls.Add(this.lblClients);
@@ -212,5 +248,9 @@
             this.PerformLayout();
 
         }
+
+        private System.Windows.Forms.Button btnSearchBook;
+        private System.Windows.Forms.TextBox txtSearchBook;
+        private System.Windows.Forms.Label lblBookInfo;
     }
 }
