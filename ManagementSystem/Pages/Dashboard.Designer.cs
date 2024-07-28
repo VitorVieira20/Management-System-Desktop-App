@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Windows.Forms;
 
 namespace ManagementSystem.Pages
 {
@@ -12,13 +13,15 @@ namespace ManagementSystem.Pages
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Button btnRequests;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Label lblSoldBooks;
-        private System.Windows.Forms.Label lblPurchasedBooks;
-        private System.Windows.Forms.Label lblCustomers;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox picLogo;
+
+        // Home
+        private System.Windows.Forms.Label lblSoldBooks;
+        private System.Windows.Forms.Label lblCustomers;
+        private System.Windows.Forms.Label lblRevenue;
 
         // Clients
         private System.Windows.Forms.Button btnClients;
@@ -72,6 +75,11 @@ namespace ManagementSystem.Pages
 
         private void InitializeComponent()
         {
+            // Home
+            this.lblCustomers = new System.Windows.Forms.Label();
+            this.lblSoldBooks = new System.Windows.Forms.Label();
+            this.lblRevenue = new System.Windows.Forms.Label();
+
             // Clients
             this.btnClients = new System.Windows.Forms.Button();
             this.btnAddClient = new System.Windows.Forms.Button();
@@ -127,9 +135,6 @@ namespace ManagementSystem.Pages
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.lblCustomers = new System.Windows.Forms.Label();
-            this.lblPurchasedBooks = new System.Windows.Forms.Label();
-            this.lblSoldBooks = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -441,7 +446,7 @@ namespace ManagementSystem.Pages
             this.panelMain.Controls.Add(this.btnEditClient);
             this.panelMain.Controls.Add(this.btnRemoveClient);
             this.panelMain.Controls.Add(this.lblCustomers);
-            this.panelMain.Controls.Add(this.lblPurchasedBooks);
+            this.panelMain.Controls.Add(this.lblRevenue);
             this.panelMain.Controls.Add(this.lblSoldBooks);
             this.panelMain.Controls.Add(this.lblStockFilter);
             this.panelMain.Controls.Add(this.cmbStockFilter);
@@ -665,19 +670,17 @@ namespace ManagementSystem.Pages
             this.lblCustomers.Name = "lblCustomers";
             this.lblCustomers.Size = new System.Drawing.Size(240, 62);
             this.lblCustomers.TabIndex = 2;
-            this.lblCustomers.Text = "512";
             this.lblCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPurchasedBooks
+            // lblRevenue
             // 
-            this.lblPurchasedBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPurchasedBooks.Location = new System.Drawing.Point(280, 62);
-            this.lblPurchasedBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPurchasedBooks.Name = "lblPurchasedBooks";
-            this.lblPurchasedBooks.Size = new System.Drawing.Size(240, 62);
-            this.lblPurchasedBooks.TabIndex = 1;
-            this.lblPurchasedBooks.Text = "1234";
-            this.lblPurchasedBooks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRevenue.Location = new System.Drawing.Point(280, 62);
+            this.lblRevenue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRevenue.Name = "lblSoldBooks";
+            this.lblRevenue.Size = new System.Drawing.Size(240, 62);
+            this.lblRevenue.TabIndex = 1;
+            this.lblRevenue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSoldBooks
             // 
@@ -687,7 +690,6 @@ namespace ManagementSystem.Pages
             this.lblSoldBooks.Name = "lblSoldBooks";
             this.lblSoldBooks.Size = new System.Drawing.Size(240, 62);
             this.lblSoldBooks.TabIndex = 0;
-            this.lblSoldBooks.Text = "1000";
             this.lblSoldBooks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Dashboard

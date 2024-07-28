@@ -40,8 +40,8 @@ namespace ManagementSystem.Pages
         /// </summary>
         private void UpdateDashboardData()
         {
-            lblSoldBooks.Text = "1000"; /* GetBooksSold */
-            lblPurchasedBooks.Text = "1234"; /* GetPurchasedBooks */
+            lblSoldBooks.Text = GetSoldBooksCount();
+            lblRevenue.Text = GetTotalRevenue();
             lblCustomers.Text = GetClientsCount();
         }
 
@@ -274,6 +274,54 @@ namespace ManagementSystem.Pages
         }
 
         /// <summary>
+        /// Gets the count of sold books.
+        /// </summary>
+        /// <returns>Count of sold books as a string.</returns>
+        private string GetSoldBooksCount()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT SUM(quantity) FROM Sales_items";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return "0";
+            }
+        }
+
+        /// <summary>
+        /// Gets the total revenue from sales.
+        /// </summary>
+        /// <returns>Total revenue as a string formatted as currency.</returns>
+        private string GetTotalRevenue()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT SUM(Total_amount) FROM Sales";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    decimal totalRevenue = Convert.ToDecimal(cmd.ExecuteScalar());
+                    return totalRevenue.ToString("C");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return "$0.00";
+            }
+        }
+
+        /// <summary>
         /// Checks if the book stock is low and updates the list view item color.
         /// </summary>
         private void CheckLowStock()
@@ -379,7 +427,7 @@ namespace ManagementSystem.Pages
         {
             LoadClients();
             ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
+            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
         }
 
         /// <summary>
@@ -389,7 +437,7 @@ namespace ManagementSystem.Pages
         {
             LoadStock();
             ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales);
+            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales);
             CheckLowStock();
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -401,7 +449,7 @@ namespace ManagementSystem.Pages
         {
             LoadSales();
             ShowComponents(btnAddSales, lvSales);
-            HideComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
         }
 
         /// <summary>
@@ -409,7 +457,7 @@ namespace ManagementSystem.Pages
         /// </summary>
         private void btnHome_Click(object sender, EventArgs e)
         {
-            ShowComponents(lblSoldBooks, lblPurchasedBooks, lblCustomers);
+            ShowComponents(lblSoldBooks, lblRevenue, lblCustomers);
             HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales);
         }
 
