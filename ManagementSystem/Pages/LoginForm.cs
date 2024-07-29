@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ManagementSystem.Pages.Dashboard;
 using MySql.Data.MySqlClient;
 
 namespace ManagementSystem.Pages
@@ -97,7 +98,7 @@ namespace ManagementSystem.Pages
                     reader.Close();
 
                     // Open the Dashboard and pass the user ID
-                    Dashboard dashboard = new Dashboard(userId);
+                    Dashboard.Dashboard dashboard = new Dashboard.Dashboard(userId);
                     dashboard.Show();
                     this.Hide();
                 }

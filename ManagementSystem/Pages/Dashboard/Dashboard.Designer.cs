@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Windows.Forms;
 
-namespace ManagementSystem.Pages
+namespace ManagementSystem.Pages.Dashboard
 {
     partial class Dashboard
     {

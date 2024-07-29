@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using ManagementSystem.Pages.Dashboard;
 using MySql.Data.MySqlClient;
 
 namespace ManagementSystem
@@ -225,6 +226,8 @@ namespace ManagementSystem
 
                     transaction.Commit();
                     MessageBox.Show("Purchase finalized successfully.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -253,6 +256,7 @@ namespace ManagementSystem
 
         private void exit_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
