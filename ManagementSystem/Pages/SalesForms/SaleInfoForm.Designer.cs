@@ -14,6 +14,7 @@
         private System.Windows.Forms.Label lblClientNameValue;
         private System.Windows.Forms.Label lblSaleDateValue;
         private System.Windows.Forms.Label lblTotalAmountValue;
+        private System.Windows.Forms.Button btnExportToExcel;
 
         protected override void Dispose(bool disposing)
         {
@@ -157,6 +158,17 @@
             this.lblTotalAmountValue.Size = new System.Drawing.Size(0, 17);
             this.lblTotalAmountValue.TabIndex = 9;
             // 
+            // btnExportToExcel
+            //
+            this.btnExportToExcel = new System.Windows.Forms.Button();
+            this.btnExportToExcel.Location = new System.Drawing.Point(30, 560);
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Size = new System.Drawing.Size(150, 30);
+            this.btnExportToExcel.TabIndex = 10;
+            this.btnExportToExcel.Text = "Export to Excel";
+            this.btnExportToExcel.UseVisualStyleBackColor = true;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
+            // 
             // SaleInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -170,6 +182,7 @@
             this.Controls.Add(this.lblSaleDate);
             this.Controls.Add(this.lblClientName);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnExportToExcel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SaleInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
