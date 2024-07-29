@@ -65,6 +65,7 @@ namespace ManagementSystem.Pages.Dashboard
         private System.Windows.Forms.ColumnHeader chTotalPrice;
         private System.Windows.Forms.ComboBox cmbSalesFilter;
         private System.Windows.Forms.Label lblSalesFilter;
+        private System.Windows.Forms.Button btnSeeSaleInfo;
 
         protected override void Dispose(bool disposing)
         {
@@ -124,6 +125,7 @@ namespace ManagementSystem.Pages.Dashboard
             this.chTotalPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbSalesFilter = new System.Windows.Forms.ComboBox();
             this.lblSalesFilter = new System.Windows.Forms.Label();
+            this.btnSeeSaleInfo = new System.Windows.Forms.Button();
 
 
             // Others
@@ -306,6 +308,22 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnAddSales.Visible = false;
             this.btnAddSales.Click += new System.EventHandler(this.btnAddSales_Click);
             // 
+            // btnSeeSaleInfo
+            // 
+            this.btnSeeSaleInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnSeeSaleInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSeeSaleInfo.FlatAppearance.BorderSize = 0;
+            this.btnSeeSaleInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeeSaleInfo.ForeColor = System.Drawing.Color.White;
+            this.btnSeeSaleInfo.Location = new System.Drawing.Point(320, 439);
+            this.btnSeeSaleInfo.Name = "btnSeeSaleInfo";
+            this.btnSeeSaleInfo.Size = new System.Drawing.Size(100, 30);
+            this.btnSeeSaleInfo.TabIndex = 3;
+            this.btnSeeSaleInfo.Text = "See Info";
+            this.btnSeeSaleInfo.UseVisualStyleBackColor = false;
+            this.btnSeeSaleInfo.Visible = false;
+            this.btnSeeSaleInfo.Click += new System.EventHandler(this.btnSeeSaleInfo_Click);
+            // 
             // lvSales
             // 
             this.lvSales.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -483,6 +501,7 @@ namespace ManagementSystem.Pages.Dashboard
             this.panelMain.Controls.Add(this.lblSalesFilter);
             this.panelMain.Controls.Add(this.cmbSalesFilter);
             this.panelMain.Controls.Add(this.btnAddSales);
+            this.panelMain.Controls.Add(this.btnSeeSaleInfo);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(227, 62);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4);

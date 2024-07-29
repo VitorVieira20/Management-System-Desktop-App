@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ManagementSystem.Pages.SalesForms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Drawing;
@@ -77,7 +78,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             ClientManager.LoadClients(lvClients);
             UIHelper.ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
+            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             StockManager.LoadStock(lvStock);
             UIHelper.ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
+            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
             DatabaseHelper.CheckLowStock(lvStock);
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -98,7 +99,7 @@ namespace ManagementSystem.Pages.Dashboard
         private void btnSales_Click(object sender, EventArgs e)
         {
             SalesManager.LoadSales(lvSales);
-            UIHelper.ShowComponents(btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
+            UIHelper.ShowComponents(btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
             UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
             cmbSalesFilter.SelectedIndexChanged += cmbSalesFilter_SelectedIndexChanged;
         }
@@ -110,7 +111,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             UpdateDashboardData();
             UIHelper.ShowComponents(lblSoldBooks, lblRevenue, lblCustomers);
-            UIHelper.HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter);
+            UIHelper.HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
         }
 
         /// <summary>
@@ -244,6 +245,26 @@ namespace ManagementSystem.Pages.Dashboard
             if (addSalesForm.ShowDialog() == DialogResult.OK)
             {
                 SalesManager.LoadSales(lvSales);
+            }
+        }
+
+        /// <summary>
+        /// Opens the See Sales Info form.
+        /// </summary>
+        private void btnSeeSaleInfo_Click(object sender, EventArgs e) 
+        {
+            if (lvSales.SelectedItems.Count > 0)
+            {
+                int saleId = Convert.ToInt32(lvSales.SelectedItems[0].SubItems[0].Text);
+                SaleInfoForm saleInfoForm = new SaleInfoForm(saleId);
+                if (saleInfoForm.ShowDialog() == DialogResult.OK)
+                {
+                    SalesManager.LoadSales(lvSales);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a client to edit.");
             }
         }
 

@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using System.Data;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ManagementSystem.Pages.Dashboard
 {
@@ -148,6 +149,94 @@ namespace ManagementSystem.Pages.Dashboard
                 case 5:
                     SortSalesByDate(false, listView);
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Loads the sales info into the list view.
+        /// </summary>
+        /// <param name="listView">ListView to use.</param>
+        public static void LoadSalesById(ListView listView, int salesId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT b.id, b.title, SUM(i.quantity) as Amount, b.price, (b.price * SUM(i.quantity)) as Total_price FROM Sales s " +
+                        "INNER JOIN Sales_items i ON s.id = i.sales_id " +
+                        "INNER JOIN Books b ON i.book_id = b.id " +
+                        "WHERE s.id = @salesId " +
+                        "GROUP BY b.id";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@salesId", salesId);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    listView.Items.Clear();
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new ListViewItem(reader["Id"].ToString());
+                        item.SubItems.Add(reader["Title"].ToString());
+                        item.SubItems.Add(reader["Amount"].ToString());
+                        item.SubItems.Add(reader["Price"].ToString());
+                        item.SubItems.Add(reader["Total_price"].ToString());
+
+                        listView.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Loads the sales info.
+        /// </summary>
+        /// <param name="listView">ListView to use.</param>
+        public static string[] LoadSalesInfo(int salesId)
+        {
+            List<string> data = new List<string>();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT c.name, s.date, s.total_amount FROM Sales s " +
+                        "INNER JOIN Clients c ON s.client_id = c.id " +
+                        "WHERE s.id = @salesId ";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@salesId", salesId);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        data.Add(reader["name"].ToString());
+
+                        if (DateTime.TryParse(reader["date"].ToString(), out DateTime publishDate))
+                        {
+                            string formattedDate = publishDate.ToString("dd/MM/yyyy");
+                            data.Add(formattedDate);
+                        }
+                        else
+                        {
+                            data.Add("");
+                        }
+
+                        data.Add(reader["total_amount"].ToString());
+                    }
+                }
+                return data.ToArray();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
             }
         }
     }
