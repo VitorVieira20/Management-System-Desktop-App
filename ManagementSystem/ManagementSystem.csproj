@@ -120,22 +120,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Pages\AddClientForm.cs">
+    <Compile Include="Pages\ClientForms\AddClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\AddClientForm.Designer.cs">
+    <Compile Include="Pages\ClientForms\AddClientForm.Designer.cs">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddSalesForm.cs">
+    <Compile Include="Pages\SalesForms\AddSalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\AddSalesForm.Designer.cs">
+    <Compile Include="Pages\SalesForms\AddSalesForm.Designer.cs">
       <DependentUpon>AddSalesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddStockForm.cs">
+    <Compile Include="Pages\StockForms\AddStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\AddStockForm.Designer.cs">
+    <Compile Include="Pages\StockForms\AddStockForm.Designer.cs">
       <DependentUpon>AddStockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard\ClientManager.cs" />
@@ -149,10 +149,10 @@
     <Compile Include="Pages\Dashboard\SalesManager.cs" />
     <Compile Include="Pages\Dashboard\StockManager.cs" />
     <Compile Include="Pages\Dashboard\UIHelper.cs" />
-    <Compile Include="Pages\EditClientForm.cs">
+    <Compile Include="Pages\ClientForms\EditClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\EditClientForm.Designer.cs">
+    <Compile Include="Pages\ClientForms\EditClientForm.Designer.cs">
       <DependentUpon>EditClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\InputBoxForm.cs">
@@ -161,42 +161,42 @@
     <Compile Include="Pages\InputBoxForm.Designer.cs">
       <DependentUpon>InputBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\LoginForm.cs">
+    <Compile Include="Pages\AuthForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\LoginForm.Designer.cs">
+    <Compile Include="Pages\AuthForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegisterForm.cs">
+    <Compile Include="Pages\AuthForms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\RegisterForm.Designer.cs">
+    <Compile Include="Pages\AuthForms\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Pages\AddClientForm.resx">
+    <EmbeddedResource Include="Pages\ClientForms\AddClientForm.resx">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AddSalesForm.resx">
+    <EmbeddedResource Include="Pages\SalesForms\AddSalesForm.resx">
       <DependentUpon>AddSalesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AddStockForm.resx">
+    <EmbeddedResource Include="Pages\StockForms\AddStockForm.resx">
       <DependentUpon>AddStockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Dashboard\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\EditClientForm.resx">
+    <EmbeddedResource Include="Pages\ClientForms\EditClientForm.resx">
       <DependentUpon>EditClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\InputBoxForm.resx">
       <DependentUpon>InputBoxForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\LoginForm.resx">
+    <EmbeddedResource Include="Pages\AuthForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\RegisterForm.resx">
+    <EmbeddedResource Include="Pages\AuthForms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -238,5 +238,6 @@
   <ItemGroup>
     <None Include="Resources\open-book.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
