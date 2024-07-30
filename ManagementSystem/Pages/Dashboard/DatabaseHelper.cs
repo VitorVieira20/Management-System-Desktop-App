@@ -92,14 +92,17 @@ namespace ManagementSystem.Pages.Dashboard
         /// Gets the count of sold books.
         /// </summary>
         /// <returns>Count of sold books as a string.</returns>
-        public static string GetSoldBooksCount()
+        public static string GetSoldBooksCountByActualMonth()
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT SUM(quantity) FROM Sales_items";
+                    string query = "SELECT SUM(i.quantity) FROM Sales_items i " +
+                        "INNER JOIN Sales s ON i.sales_id = s.id " +
+                        "WHERE MONTH(s.date) = MONTH(CURRENT_DATE) " +
+                        "AND YEAR(s.date) = YEAR(CURRENT_DATE)";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count.ToString();
@@ -116,14 +119,16 @@ namespace ManagementSystem.Pages.Dashboard
         /// Gets the total revenue from sales.
         /// </summary>
         /// <returns>Total revenue as a string formatted as currency.</returns>
-        public static string GetTotalRevenue()
+        public static string GetTotalRevenueByActualMonth()
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT SUM(Total_amount) FROM Sales";
+                    string query = "SELECT SUM(total_amount) FROM Sales " +
+                        "WHERE MONTH(date) = MONTH(CURRENT_DATE) " +
+                        "AND YEAR(date) = YEAR(CURRENT_DATE)";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     decimal totalRevenue = Convert.ToDecimal(cmd.ExecuteScalar());
                     return totalRevenue.ToString("C");

@@ -41,8 +41,8 @@ namespace ManagementSystem.Pages.Dashboard
         /// </summary>
         private void UpdateDashboardData()
         {
-            lblSoldBooks.Text = DatabaseHelper.GetSoldBooksCount();
-            lblRevenue.Text = DatabaseHelper.GetTotalRevenue();
+            lblSoldBooks.Text = DatabaseHelper.GetSoldBooksCountByActualMonth();
+            lblRevenue.Text = DatabaseHelper.GetTotalRevenueByActualMonth();
             lblCustomers.Text = DatabaseHelper.GetClientsCount();
         }
 
