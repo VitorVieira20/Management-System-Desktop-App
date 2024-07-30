@@ -156,6 +156,48 @@ namespace ManagementSystem.Pages.Dashboard
 
             }
         }
+
+        /// <summary>
+        /// Gets the book of the month (the most sold).
+        /// </summary>
+        /// <returns>Title of the book and the quantity sold.</returns>
+        public static (string Title, int Quantity) GetBookOfTheMonth()
+        {
+            string title = "";
+            int quantity = 0;
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT b.title, SUM(si.quantity) as TotalSold " +
+                                   "FROM Sales s " +
+                                   "INNER JOIN Sales_items si ON s.id = si.sales_id " +
+                                   "INNER JOIN Books b ON si.book_id = b.id " +
+                                   "WHERE MONTH(s.date) = MONTH(CURRENT_DATE()) AND YEAR(s.date) = YEAR(CURRENT_DATE()) " +
+                                   "GROUP BY b.id " +
+                                   "ORDER BY TotalSold DESC " +
+                                   "LIMIT 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        title = reader["title"].ToString();
+                        quantity = Convert.ToInt32(reader["TotalSold"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            return (title, quantity);
+        }
+
     }
 
 }

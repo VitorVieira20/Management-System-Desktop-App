@@ -44,6 +44,9 @@ namespace ManagementSystem.Pages.Dashboard
             lblSoldBooks.Text = DatabaseHelper.GetSoldBooksCountByActualMonth();
             lblRevenue.Text = DatabaseHelper.GetTotalRevenueByActualMonth();
             lblCustomers.Text = DatabaseHelper.GetClientsCount();
+            var bookOfTheMonth = DatabaseHelper.GetBookOfTheMonth();
+            lblBookTitle.Text = "Title: " + bookOfTheMonth.Title;
+            lblQuantitySold.Text = "Quantity Sold: " + bookOfTheMonth.Quantity.ToString();
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             ClientManager.LoadClients(lvClients);
             UIHelper.ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
         }
 
         /// <summary>
@@ -88,7 +91,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             StockManager.LoadStock(lvStock);
             UIHelper.ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
             DatabaseHelper.CheckLowStock(lvStock);
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -100,7 +103,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             SalesManager.LoadSales(lvSales);
             UIHelper.ShowComponents(btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
-            UIHelper.HideComponents(lblSoldBooks, lblRevenue, lblCustomers, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
             cmbSalesFilter.SelectedIndexChanged += cmbSalesFilter_SelectedIndexChanged;
         }
 
@@ -110,7 +113,7 @@ namespace ManagementSystem.Pages.Dashboard
         private void btnHome_Click(object sender, EventArgs e)
         {
             UpdateDashboardData();
-            UIHelper.ShowComponents(lblSoldBooks, lblRevenue, lblCustomers);
+            UIHelper.ShowComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold);
             UIHelper.HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
         }
 

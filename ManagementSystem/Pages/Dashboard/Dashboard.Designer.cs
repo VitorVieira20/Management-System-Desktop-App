@@ -22,6 +22,13 @@ namespace ManagementSystem.Pages.Dashboard
         private System.Windows.Forms.Label lblSoldBooks;
         private System.Windows.Forms.Label lblCustomers;
         private System.Windows.Forms.Label lblRevenue;
+        private System.Windows.Forms.Label lblCustomersDescription;
+        private System.Windows.Forms.Label lblRevenueDescription;
+        private System.Windows.Forms.Label lblSoldBooksDescription;
+        private System.Windows.Forms.Label lblBookOfTheMonth;
+        private System.Windows.Forms.Label lblBookTitle;
+        private System.Windows.Forms.Label lblQuantitySold;
+
 
         // Clients
         private System.Windows.Forms.Button btnClients;
@@ -82,6 +89,12 @@ namespace ManagementSystem.Pages.Dashboard
             this.lblCustomers = new System.Windows.Forms.Label();
             this.lblSoldBooks = new System.Windows.Forms.Label();
             this.lblRevenue = new System.Windows.Forms.Label();
+            this.lblCustomersDescription = new System.Windows.Forms.Label();
+            this.lblRevenueDescription = new System.Windows.Forms.Label();
+            this.lblSoldBooksDescription = new System.Windows.Forms.Label();
+            this.lblBookOfTheMonth = new System.Windows.Forms.Label();
+            this.lblBookTitle = new System.Windows.Forms.Label();
+            this.lblQuantitySold = new System.Windows.Forms.Label();
 
             // Clients
             this.btnClients = new System.Windows.Forms.Button();
@@ -493,9 +506,15 @@ namespace ManagementSystem.Pages.Dashboard
             this.panelMain.Controls.Add(this.btnAddClient);
             this.panelMain.Controls.Add(this.btnEditClient);
             this.panelMain.Controls.Add(this.btnRemoveClient);
+            this.panelMain.Controls.Add(this.lblCustomersDescription);
+            this.panelMain.Controls.Add(this.lblRevenueDescription);
+            this.panelMain.Controls.Add(this.lblSoldBooksDescription);
             this.panelMain.Controls.Add(this.lblCustomers);
             this.panelMain.Controls.Add(this.lblRevenue);
             this.panelMain.Controls.Add(this.lblSoldBooks);
+            this.panelMain.Controls.Add(this.lblBookOfTheMonth);
+            this.panelMain.Controls.Add(this.lblBookTitle);
+            this.panelMain.Controls.Add(this.lblQuantitySold);
             this.panelMain.Controls.Add(this.lblStockFilter);
             this.panelMain.Controls.Add(this.cmbStockFilter);
             this.panelMain.Controls.Add(this.lblSalesFilter);
@@ -713,6 +732,39 @@ namespace ManagementSystem.Pages.Dashboard
             this.cmbStockFilter.TabIndex = 10;
             this.cmbStockFilter.Visible = false;
             // 
+            // lblCustomersDescription
+            // 
+            this.lblCustomersDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomersDescription.Location = new System.Drawing.Point(533, 124);
+            this.lblCustomersDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCustomersDescription.Name = "lblCustomersDescription";
+            this.lblCustomersDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblCustomersDescription.TabIndex = 5;
+            this.lblCustomersDescription.Text = "Registered Customers";
+            this.lblCustomersDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRevenueDescription
+            // 
+            this.lblRevenueDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRevenueDescription.Location = new System.Drawing.Point(280, 124);
+            this.lblRevenueDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRevenueDescription.Name = "lblRevenueDescription";
+            this.lblRevenueDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblRevenueDescription.TabIndex = 4;
+            this.lblRevenueDescription.Text = "Revenue This Month";
+            this.lblRevenueDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSoldBooksDescription
+            // 
+            this.lblSoldBooksDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoldBooksDescription.Location = new System.Drawing.Point(27, 124);
+            this.lblSoldBooksDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSoldBooksDescription.Name = "lblSoldBooksDescription";
+            this.lblSoldBooksDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblSoldBooksDescription.TabIndex = 3;
+            this.lblSoldBooksDescription.Text = "Books Sold This Month";
+            this.lblSoldBooksDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblCustomers
             // 
             this.lblCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -742,6 +794,40 @@ namespace ManagementSystem.Pages.Dashboard
             this.lblSoldBooks.Size = new System.Drawing.Size(240, 62);
             this.lblSoldBooks.TabIndex = 0;
             this.lblSoldBooks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBookOfTheMonth
+            // 
+            this.lblBookOfTheMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookOfTheMonth.Location = new System.Drawing.Point(150, 250);
+            this.lblBookOfTheMonth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookOfTheMonth.Name = "lblBookOfTheMonth";
+            this.lblBookOfTheMonth.Size = new System.Drawing.Size(500, 30);
+            this.lblBookOfTheMonth.TabIndex = 6;
+            this.lblBookOfTheMonth.Text = "Book of the Month:";
+            this.lblBookOfTheMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBookTitle
+            // 
+            this.lblBookTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookTitle.Location = new System.Drawing.Point(150, 290);
+            this.lblBookTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookTitle.Name = "lblBookTitle";
+            this.lblBookTitle.Size = new System.Drawing.Size(500, 30);
+            this.lblBookTitle.TabIndex = 7;
+            this.lblBookTitle.Text = "Title: ";
+            this.lblBookTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblQuantitySold
+            // 
+            this.lblQuantitySold.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantitySold.Location = new System.Drawing.Point(150, 330);
+            this.lblQuantitySold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQuantitySold.Name = "lblQuantitySold";
+            this.lblQuantitySold.Size = new System.Drawing.Size(500, 30);
+            this.lblQuantitySold.TabIndex = 8;
+            this.lblQuantitySold.Text = "Quantity Sold: ";
+            this.lblQuantitySold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // Dashboard
             // 
