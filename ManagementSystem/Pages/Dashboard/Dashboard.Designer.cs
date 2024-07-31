@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Windows.Forms;
-
-namespace ManagementSystem.Pages.Dashboard
+﻿namespace ManagementSystem.Pages.Dashboard
 {
     partial class Dashboard
     {
@@ -11,10 +8,8 @@ namespace ManagementSystem.Pages.Dashboard
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Button btnRequests;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox picLogo;
 
@@ -74,6 +69,19 @@ namespace ManagementSystem.Pages.Dashboard
         private System.Windows.Forms.Label lblSalesFilter;
         private System.Windows.Forms.Button btnSeeSaleInfo;
 
+        // Reports
+        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnMonthlySalesReport;
+        private System.Windows.Forms.Button btnSalesByCategoryReport;
+        private System.Windows.Forms.Button btnCustomerReport;
+        private System.Windows.Forms.Button btnBestSellingProductsReport;
+        private System.Windows.Forms.Button btnRevenueReport;
+        private System.Windows.Forms.Button btnStockReport;
+
+        private System.Windows.Forms.ListView lvReport;
+        private System.Windows.Forms.ColumnHeader chReportHeader1;
+        private System.Windows.Forms.ColumnHeader chReportHeader2;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -117,9 +125,9 @@ namespace ManagementSystem.Pages.Dashboard
             this.lvStock = new System.Windows.Forms.ListView();
             this.chBookId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBookTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBookAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBookPublishDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chBookStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAddStock = new System.Windows.Forms.Button();
             this.lblStockSearch = new System.Windows.Forms.Label();
             this.txtStockSearch = new System.Windows.Forms.TextBox();
@@ -140,6 +148,17 @@ namespace ManagementSystem.Pages.Dashboard
             this.lblSalesFilter = new System.Windows.Forms.Label();
             this.btnSeeSaleInfo = new System.Windows.Forms.Button();
 
+            // Reports
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnMonthlySalesReport = new System.Windows.Forms.Button();
+            this.btnSalesByCategoryReport = new System.Windows.Forms.Button();
+            this.btnCustomerReport = new System.Windows.Forms.Button();
+            this.btnBestSellingProductsReport = new System.Windows.Forms.Button();
+            this.btnRevenueReport = new System.Windows.Forms.Button();
+            this.btnStockReport = new System.Windows.Forms.Button();
+            this.lvReport = new System.Windows.Forms.ListView();
+            this.chReportHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chReportHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 
             // Others
             this.components = new System.ComponentModel.Container();
@@ -147,9 +166,7 @@ namespace ManagementSystem.Pages.Dashboard
             this.panelLeft = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.btnReports = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnRequests = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
@@ -160,118 +177,101 @@ namespace ManagementSystem.Pages.Dashboard
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timer1
+            // lblCustomers
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.lblCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomers.Location = new System.Drawing.Point(533, 62);
+            this.lblCustomers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCustomers.Name = "lblCustomers";
+            this.lblCustomers.Size = new System.Drawing.Size(240, 62);
+            this.lblCustomers.TabIndex = 2;
+            this.lblCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panelLeft
+            // lblSoldBooks
             // 
-            this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.panelLeft.Controls.Add(this.btnHome);
-            this.panelLeft.Controls.Add(this.picLogo);
-            this.panelLeft.Controls.Add(this.btnReports);
-            this.panelLeft.Controls.Add(this.btnLogout);
-            this.panelLeft.Controls.Add(this.btnRequests);
-            this.panelLeft.Controls.Add(this.btnStock);
-            this.panelLeft.Controls.Add(this.btnClients);
-            this.panelLeft.Controls.Add(this.btnSales);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(227, 554);
-            this.panelLeft.TabIndex = 0;
+            this.lblSoldBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoldBooks.Location = new System.Drawing.Point(27, 62);
+            this.lblSoldBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSoldBooks.Name = "lblSoldBooks";
+            this.lblSoldBooks.Size = new System.Drawing.Size(240, 62);
+            this.lblSoldBooks.TabIndex = 0;
+            this.lblSoldBooks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnHome
+            // lblRevenue
             // 
-            this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnHome.ForeColor = System.Drawing.Color.White;
-            this.btnHome.Location = new System.Drawing.Point(0, 149);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(267, 37);
-            this.btnHome.TabIndex = 11;
-            this.btnHome.Text = "Home";
-            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            this.lblRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRevenue.Location = new System.Drawing.Point(280, 62);
+            this.lblRevenue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRevenue.Name = "lblRevenue";
+            this.lblRevenue.Size = new System.Drawing.Size(240, 62);
+            this.lblRevenue.TabIndex = 1;
+            this.lblRevenue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // picLogo
+            // lblCustomersDescription
             // 
-            this.picLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picLogo.Image = global::ManagementSystem.Properties.Resources.open_book;
-            this.picLogo.Location = new System.Drawing.Point(0, 0);
-            this.picLogo.Margin = new System.Windows.Forms.Padding(4);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(227, 123);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 10;
-            this.picLogo.TabStop = false;
+            this.lblCustomersDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomersDescription.Location = new System.Drawing.Point(533, 124);
+            this.lblCustomersDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCustomersDescription.Name = "lblCustomersDescription";
+            this.lblCustomersDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblCustomersDescription.TabIndex = 5;
+            this.lblCustomersDescription.Text = "Registered Customers";
+            this.lblCustomersDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnReports
+            // lblRevenueDescription
             // 
-            this.btnReports.FlatAppearance.BorderSize = 0;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Location = new System.Drawing.Point(0, 391);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(267, 37);
-            this.btnReports.TabIndex = 9;
-            this.btnReports.Text = "Reports";
-            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.UseVisualStyleBackColor = true;
+            this.lblRevenueDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRevenueDescription.Location = new System.Drawing.Point(280, 124);
+            this.lblRevenueDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRevenueDescription.Name = "lblRevenueDescription";
+            this.lblRevenueDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblRevenueDescription.TabIndex = 4;
+            this.lblRevenueDescription.Text = "Revenue This Month";
+            this.lblRevenueDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnLogout
+            // lblSoldBooksDescription
             // 
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(0, 517);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(227, 37);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.logoutBtn_Click);
+            this.lblSoldBooksDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoldBooksDescription.Location = new System.Drawing.Point(27, 124);
+            this.lblSoldBooksDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSoldBooksDescription.Name = "lblSoldBooksDescription";
+            this.lblSoldBooksDescription.Size = new System.Drawing.Size(240, 30);
+            this.lblSoldBooksDescription.TabIndex = 3;
+            this.lblSoldBooksDescription.Text = "Books Sold This Month";
+            this.lblSoldBooksDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnRequests
+            // lblBookOfTheMonth
             // 
-            this.btnRequests.FlatAppearance.BorderSize = 0;
-            this.btnRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnRequests.ForeColor = System.Drawing.Color.White;
-            this.btnRequests.Location = new System.Drawing.Point(0, 346);
-            this.btnRequests.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRequests.Name = "btnRequests";
-            this.btnRequests.Size = new System.Drawing.Size(267, 37);
-            this.btnRequests.TabIndex = 6;
-            this.btnRequests.Text = "Requests";
-            this.btnRequests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRequests.UseVisualStyleBackColor = true;
+            this.lblBookOfTheMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookOfTheMonth.Location = new System.Drawing.Point(150, 250);
+            this.lblBookOfTheMonth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookOfTheMonth.Name = "lblBookOfTheMonth";
+            this.lblBookOfTheMonth.Size = new System.Drawing.Size(500, 30);
+            this.lblBookOfTheMonth.TabIndex = 6;
+            this.lblBookOfTheMonth.Text = "Book of the Month:";
+            this.lblBookOfTheMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnStock
+            // lblBookTitle
             // 
-            this.btnStock.FlatAppearance.BorderSize = 0;
-            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStock.ForeColor = System.Drawing.Color.White;
-            this.btnStock.Location = new System.Drawing.Point(0, 297);
-            this.btnStock.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStock.Name = "btnStock";
-            this.btnStock.Size = new System.Drawing.Size(267, 37);
-            this.btnStock.TabIndex = 5;
-            this.btnStock.Text = "Stock";
-            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStock.UseVisualStyleBackColor = true;
-            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
+            this.lblBookTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookTitle.Location = new System.Drawing.Point(150, 290);
+            this.lblBookTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookTitle.Name = "lblBookTitle";
+            this.lblBookTitle.Size = new System.Drawing.Size(500, 30);
+            this.lblBookTitle.TabIndex = 7;
+            this.lblBookTitle.Text = "Title: ";
+            this.lblBookTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblQuantitySold
+            // 
+            this.lblQuantitySold.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantitySold.Location = new System.Drawing.Point(150, 330);
+            this.lblQuantitySold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQuantitySold.Name = "lblQuantitySold";
+            this.lblQuantitySold.Size = new System.Drawing.Size(500, 30);
+            this.lblQuantitySold.TabIndex = 8;
+            this.lblQuantitySold.Text = "Quantity Sold: ";
+            this.lblQuantitySold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClients
             // 
@@ -288,124 +288,6 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnClients.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClients.UseVisualStyleBackColor = true;
             this.btnClients.Click += new System.EventHandler(this.btnClients_Click);
-            // 
-            // btnSales
-            // 
-            this.btnSales.FlatAppearance.BorderSize = 0;
-            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSales.ForeColor = System.Drawing.Color.White;
-            this.btnSales.Location = new System.Drawing.Point(0, 199);
-            this.btnSales.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSales.Name = "btnSales";
-            this.btnSales.Size = new System.Drawing.Size(267, 37);
-            this.btnSales.TabIndex = 3;
-            this.btnSales.Text = "Sales";
-            this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSales.UseVisualStyleBackColor = true;
-            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
-            // 
-            // btnAddSales
-            // 
-            this.btnAddSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.btnAddSales.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddSales.FlatAppearance.BorderSize = 0;
-            this.btnAddSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddSales.ForeColor = System.Drawing.Color.White;
-            this.btnAddSales.Location = new System.Drawing.Point(47, 439);
-            this.btnAddSales.Name = "btnAddClient";
-            this.btnAddSales.Size = new System.Drawing.Size(100, 30);
-            this.btnAddSales.TabIndex = 1;
-            this.btnAddSales.Text = "Add Sale";
-            this.btnAddSales.UseVisualStyleBackColor = false;
-            this.btnAddSales.Visible = false;
-            this.btnAddSales.Click += new System.EventHandler(this.btnAddSales_Click);
-            // 
-            // btnSeeSaleInfo
-            // 
-            this.btnSeeSaleInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.btnSeeSaleInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSeeSaleInfo.FlatAppearance.BorderSize = 0;
-            this.btnSeeSaleInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeeSaleInfo.ForeColor = System.Drawing.Color.White;
-            this.btnSeeSaleInfo.Location = new System.Drawing.Point(320, 439);
-            this.btnSeeSaleInfo.Name = "btnSeeSaleInfo";
-            this.btnSeeSaleInfo.Size = new System.Drawing.Size(100, 30);
-            this.btnSeeSaleInfo.TabIndex = 3;
-            this.btnSeeSaleInfo.Text = "See Info";
-            this.btnSeeSaleInfo.UseVisualStyleBackColor = false;
-            this.btnSeeSaleInfo.Visible = false;
-            this.btnSeeSaleInfo.Click += new System.EventHandler(this.btnSeeSaleInfo_Click);
-            // 
-            // lvSales
-            // 
-            this.lvSales.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chSalesId,
-            this.chClientName,
-            this.chSalesDate,
-            this.chBookAmount,
-            this.chTotalPrice});
-            this.lvSales.FullRowSelect = true;
-            this.lvSales.GridLines = true;
-            this.lvSales.HideSelection = false;
-            this.lvSales.Location = new System.Drawing.Point(47, 47);
-            this.lvSales.Name = "lvSales";
-            this.lvSales.Size = new System.Drawing.Size(742, 319);
-            this.lvSales.TabIndex = 0;
-            this.lvSales.UseCompatibleStateImageBehavior = false;
-            this.lvSales.View = System.Windows.Forms.View.Details;
-            this.lvSales.Visible = false;
-            // 
-            // chSalesId
-            // 
-            this.chSalesId.Text = "ID";
-            this.chSalesId.Width = 50;
-            // 
-            // chClientName
-            // 
-            this.chClientName.Text = "Client Name";
-            this.chClientName.Width = 100;
-            // 
-            // chSalesDate
-            // 
-            this.chSalesDate.Text = "Sale Date";
-            this.chSalesDate.Width = 75;
-            // 
-            // chBookAmount
-            // 
-            this.chBookAmount.Text = "Books Amount";
-            this.chBookAmount.Width = 100;
-            // 
-            // chTotalPrice
-            // 
-            this.chTotalPrice.Text = "Total Price";
-            this.chTotalPrice.Width = 75;
-            // 
-            // lblSalesFilter
-            // 
-            this.lblSalesFilter.AutoSize = true;
-            this.lblSalesFilter.Location = new System.Drawing.Point(175, 424);
-            this.lblSalesFilter.Name = "lblSalesFilter";
-            this.lblSalesFilter.Size = new System.Drawing.Size(64, 16);
-            this.lblSalesFilter.TabIndex = 6;
-            this.lblSalesFilter.Text = "Filter";
-            this.lblSalesFilter.Visible = false;
-            // 
-            // cmbSalesFilter
-            // 
-            this.cmbSalesFilter.FormattingEnabled = true;
-            this.cmbSalesFilter.Items.AddRange(new object[] {
-                "Book Amount Ascending",
-                "Book Amount Descending",
-                "Price Ascending",
-                "Price Descending",
-                "Date Ascending",
-                "Date Descending"});
-            this.cmbSalesFilter.Location = new System.Drawing.Point(175, 442);
-            this.cmbSalesFilter.Name = "cmbSalesFilter";
-            this.cmbSalesFilter.Size = new System.Drawing.Size(121, 21);
-            this.cmbSalesFilter.TabIndex = 10;
-            this.cmbSalesFilter.Visible = false;
             // 
             // btnAddClient
             // 
@@ -454,79 +336,6 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnRemoveClient.UseVisualStyleBackColor = false;
             this.btnRemoveClient.Visible = false;
             this.btnRemoveClient.Click += new System.EventHandler(this.btnRemoveClient_Click);
-            // 
-            // panelTop
-            // 
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.panelTop.Controls.Add(this.lblTime);
-            this.panelTop.Controls.Add(this.lblWelcome);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(227, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(840, 62);
-            this.panelTop.TabIndex = 1;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblTime.ForeColor = System.Drawing.Color.White;
-            this.lblTime.Location = new System.Drawing.Point(640, 0);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(200, 62);
-            this.lblTime.TabIndex = 2;
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(-5, 14);
-            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(400, 31);
-            this.lblWelcome.TabIndex = 0;
-            this.lblWelcome.Text = "Welcome, SalaAr HuSyN";
-            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panelMain
-            // 
-            this.panelMain.Controls.Add(this.lvClients);
-            this.panelMain.Controls.Add(this.lvStock);
-            this.panelMain.Controls.Add(this.lvSales);
-            this.panelMain.Controls.Add(this.lblSearch);
-            this.panelMain.Controls.Add(this.txtSearch);
-            this.panelMain.Controls.Add(this.btnSearch);
-            this.panelMain.Controls.Add(this.btnAddStock);
-            this.panelMain.Controls.Add(this.lblStockSearch);
-            this.panelMain.Controls.Add(this.txtStockSearch);
-            this.panelMain.Controls.Add(this.btnStockSearch);
-            this.panelMain.Controls.Add(this.btnAddClient);
-            this.panelMain.Controls.Add(this.btnEditClient);
-            this.panelMain.Controls.Add(this.btnRemoveClient);
-            this.panelMain.Controls.Add(this.lblCustomersDescription);
-            this.panelMain.Controls.Add(this.lblRevenueDescription);
-            this.panelMain.Controls.Add(this.lblSoldBooksDescription);
-            this.panelMain.Controls.Add(this.lblCustomers);
-            this.panelMain.Controls.Add(this.lblRevenue);
-            this.panelMain.Controls.Add(this.lblSoldBooks);
-            this.panelMain.Controls.Add(this.lblBookOfTheMonth);
-            this.panelMain.Controls.Add(this.lblBookTitle);
-            this.panelMain.Controls.Add(this.lblQuantitySold);
-            this.panelMain.Controls.Add(this.lblStockFilter);
-            this.panelMain.Controls.Add(this.cmbStockFilter);
-            this.panelMain.Controls.Add(this.lblSalesFilter);
-            this.panelMain.Controls.Add(this.cmbSalesFilter);
-            this.panelMain.Controls.Add(this.btnAddSales);
-            this.panelMain.Controls.Add(this.btnSeeSaleInfo);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(227, 62);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(4);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(840, 492);
-            this.panelMain.TabIndex = 2;
             // 
             // lvClients
             // 
@@ -612,6 +421,22 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnSearch.Visible = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnStock
+            // 
+            this.btnStock.FlatAppearance.BorderSize = 0;
+            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStock.ForeColor = System.Drawing.Color.White;
+            this.btnStock.Location = new System.Drawing.Point(0, 297);
+            this.btnStock.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStock.Name = "btnStock";
+            this.btnStock.Size = new System.Drawing.Size(267, 37);
+            this.btnStock.TabIndex = 5;
+            this.btnStock.Text = "Stock";
+            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
+            // 
             // lvStock
             // 
             this.lvStock.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -664,7 +489,7 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnAddStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStock.ForeColor = System.Drawing.Color.White;
             this.btnAddStock.Location = new System.Drawing.Point(47, 439);
-            this.btnAddStock.Name = "btnAddClient";
+            this.btnAddStock.Name = "btnAddStock";
             this.btnAddStock.Size = new System.Drawing.Size(100, 30);
             this.btnAddStock.TabIndex = 1;
             this.btnAddStock.Text = "Add Stock";
@@ -676,8 +501,8 @@ namespace ManagementSystem.Pages.Dashboard
             // 
             this.lblStockSearch.AutoSize = true;
             this.lblStockSearch.Location = new System.Drawing.Point(395, 424);
-            this.lblStockSearch.Name = "lblSearch";
-            this.lblStockSearch.Size = new System.Drawing.Size(64, 16);
+            this.lblStockSearch.Name = "lblStockSearch";
+            this.lblStockSearch.Size = new System.Drawing.Size(68, 16);
             this.lblStockSearch.TabIndex = 6;
             this.lblStockSearch.Text = "Book Title";
             this.lblStockSearch.Visible = false;
@@ -685,7 +510,7 @@ namespace ManagementSystem.Pages.Dashboard
             // txtStockSearch
             // 
             this.txtStockSearch.Location = new System.Drawing.Point(398, 443);
-            this.txtStockSearch.Name = "txtSearch";
+            this.txtStockSearch.Name = "txtStockSearch";
             this.txtStockSearch.Size = new System.Drawing.Size(207, 22);
             this.txtStockSearch.TabIndex = 5;
             this.txtStockSearch.Visible = false;
@@ -698,7 +523,7 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnStockSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStockSearch.ForeColor = System.Drawing.Color.White;
             this.btnStockSearch.Location = new System.Drawing.Point(620, 439);
-            this.btnStockSearch.Name = "btnSearch";
+            this.btnStockSearch.Name = "btnStockSearch";
             this.btnStockSearch.Size = new System.Drawing.Size(100, 30);
             this.btnStockSearch.TabIndex = 4;
             this.btnStockSearch.Text = "Search";
@@ -706,128 +531,432 @@ namespace ManagementSystem.Pages.Dashboard
             this.btnStockSearch.Visible = false;
             this.btnStockSearch.Click += new System.EventHandler(this.btnStockSearch_Click);
             // 
+            // cmbStockFilter
+            // 
+            this.cmbStockFilter.FormattingEnabled = true;
+            this.cmbStockFilter.Items.AddRange(new object[] {
+            "Stock Ascending",
+            "Stock Descending",
+            "Title Ascending",
+            "Title Descending",
+            "Date Ascending",
+            "Date Descending"});
+            this.cmbStockFilter.Location = new System.Drawing.Point(250, 442);
+            this.cmbStockFilter.Name = "cmbStockFilter";
+            this.cmbStockFilter.Size = new System.Drawing.Size(121, 24);
+            this.cmbStockFilter.TabIndex = 10;
+            this.cmbStockFilter.Visible = false;
+            // 
             // lblStockFilter
             // 
             this.lblStockFilter.AutoSize = true;
             this.lblStockFilter.Location = new System.Drawing.Point(250, 424);
             this.lblStockFilter.Name = "lblStockFilter";
-            this.lblStockFilter.Size = new System.Drawing.Size(64, 16);
+            this.lblStockFilter.Size = new System.Drawing.Size(36, 16);
             this.lblStockFilter.TabIndex = 6;
             this.lblStockFilter.Text = "Filter";
             this.lblStockFilter.Visible = false;
             // 
-            // cmbStockFilter
+            // btnSales
             // 
-            this.cmbStockFilter.FormattingEnabled = true;
-            this.cmbStockFilter.Items.AddRange(new object[] {
-                "Stock Ascending",
-                "Stock Descending",
-                "Title Ascending",
-                "Title Descending",
-                "Date Ascending",
-                "Date Descending"});
-            this.cmbStockFilter.Location = new System.Drawing.Point(250, 442);
-            this.cmbStockFilter.Name = "cmbStockFilter";
-            this.cmbStockFilter.Size = new System.Drawing.Size(121, 21);
-            this.cmbStockFilter.TabIndex = 10;
-            this.cmbStockFilter.Visible = false;
+            this.btnSales.FlatAppearance.BorderSize = 0;
+            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSales.ForeColor = System.Drawing.Color.White;
+            this.btnSales.Location = new System.Drawing.Point(0, 199);
+            this.btnSales.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(267, 37);
+            this.btnSales.TabIndex = 3;
+            this.btnSales.Text = "Sales";
+            this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
             // 
-            // lblCustomersDescription
+            // btnAddSales
             // 
-            this.lblCustomersDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomersDescription.Location = new System.Drawing.Point(533, 124);
-            this.lblCustomersDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCustomersDescription.Name = "lblCustomersDescription";
-            this.lblCustomersDescription.Size = new System.Drawing.Size(240, 30);
-            this.lblCustomersDescription.TabIndex = 5;
-            this.lblCustomersDescription.Text = "Registered Customers";
-            this.lblCustomersDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAddSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnAddSales.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddSales.FlatAppearance.BorderSize = 0;
+            this.btnAddSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddSales.ForeColor = System.Drawing.Color.White;
+            this.btnAddSales.Location = new System.Drawing.Point(47, 439);
+            this.btnAddSales.Name = "btnAddSales";
+            this.btnAddSales.Size = new System.Drawing.Size(100, 30);
+            this.btnAddSales.TabIndex = 1;
+            this.btnAddSales.Text = "Add Sale";
+            this.btnAddSales.UseVisualStyleBackColor = false;
+            this.btnAddSales.Visible = false;
+            this.btnAddSales.Click += new System.EventHandler(this.btnAddSales_Click);
             // 
-            // lblRevenueDescription
+            // lvSales
             // 
-            this.lblRevenueDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRevenueDescription.Location = new System.Drawing.Point(280, 124);
-            this.lblRevenueDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRevenueDescription.Name = "lblRevenueDescription";
-            this.lblRevenueDescription.Size = new System.Drawing.Size(240, 30);
-            this.lblRevenueDescription.TabIndex = 4;
-            this.lblRevenueDescription.Text = "Revenue This Month";
-            this.lblRevenueDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lvSales.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chSalesId,
+            this.chClientName,
+            this.chSalesDate,
+            this.chBookAmount,
+            this.chTotalPrice});
+            this.lvSales.FullRowSelect = true;
+            this.lvSales.GridLines = true;
+            this.lvSales.HideSelection = false;
+            this.lvSales.Location = new System.Drawing.Point(47, 47);
+            this.lvSales.Name = "lvSales";
+            this.lvSales.Size = new System.Drawing.Size(742, 319);
+            this.lvSales.TabIndex = 0;
+            this.lvSales.UseCompatibleStateImageBehavior = false;
+            this.lvSales.View = System.Windows.Forms.View.Details;
+            this.lvSales.Visible = false;
             // 
-            // lblSoldBooksDescription
+            // chSalesId
             // 
-            this.lblSoldBooksDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoldBooksDescription.Location = new System.Drawing.Point(27, 124);
-            this.lblSoldBooksDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSoldBooksDescription.Name = "lblSoldBooksDescription";
-            this.lblSoldBooksDescription.Size = new System.Drawing.Size(240, 30);
-            this.lblSoldBooksDescription.TabIndex = 3;
-            this.lblSoldBooksDescription.Text = "Books Sold This Month";
-            this.lblSoldBooksDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chSalesId.Text = "ID";
+            this.chSalesId.Width = 50;
             // 
-            // lblCustomers
+            // chClientName
             // 
-            this.lblCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomers.Location = new System.Drawing.Point(533, 62);
-            this.lblCustomers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCustomers.Name = "lblCustomers";
-            this.lblCustomers.Size = new System.Drawing.Size(240, 62);
-            this.lblCustomers.TabIndex = 2;
-            this.lblCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chClientName.Text = "Client Name";
+            this.chClientName.Width = 100;
             // 
-            // lblRevenue
+            // chSalesDate
             // 
-            this.lblRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRevenue.Location = new System.Drawing.Point(280, 62);
-            this.lblRevenue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRevenue.Name = "lblSoldBooks";
-            this.lblRevenue.Size = new System.Drawing.Size(240, 62);
-            this.lblRevenue.TabIndex = 1;
-            this.lblRevenue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chSalesDate.Text = "Sale Date";
+            this.chSalesDate.Width = 75;
             // 
-            // lblSoldBooks
+            // chBookAmount
             // 
-            this.lblSoldBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoldBooks.Location = new System.Drawing.Point(27, 62);
-            this.lblSoldBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSoldBooks.Name = "lblSoldBooks";
-            this.lblSoldBooks.Size = new System.Drawing.Size(240, 62);
-            this.lblSoldBooks.TabIndex = 0;
-            this.lblSoldBooks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chBookAmount.Text = "Books Amount";
+            this.chBookAmount.Width = 100;
             // 
-            // lblBookOfTheMonth
+            // chTotalPrice
             // 
-            this.lblBookOfTheMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookOfTheMonth.Location = new System.Drawing.Point(150, 250);
-            this.lblBookOfTheMonth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBookOfTheMonth.Name = "lblBookOfTheMonth";
-            this.lblBookOfTheMonth.Size = new System.Drawing.Size(500, 30);
-            this.lblBookOfTheMonth.TabIndex = 6;
-            this.lblBookOfTheMonth.Text = "Book of the Month:";
-            this.lblBookOfTheMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chTotalPrice.Text = "Total Price";
+            this.chTotalPrice.Width = 75;
             // 
-            // lblBookTitle
+            // cmbSalesFilter
             // 
-            this.lblBookTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookTitle.Location = new System.Drawing.Point(150, 290);
-            this.lblBookTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBookTitle.Name = "lblBookTitle";
-            this.lblBookTitle.Size = new System.Drawing.Size(500, 30);
-            this.lblBookTitle.TabIndex = 7;
-            this.lblBookTitle.Text = "Title: ";
-            this.lblBookTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cmbSalesFilter.FormattingEnabled = true;
+            this.cmbSalesFilter.Items.AddRange(new object[] {
+            "Book Amount Ascending",
+            "Book Amount Descending",
+            "Price Ascending",
+            "Price Descending",
+            "Date Ascending",
+            "Date Descending"});
+            this.cmbSalesFilter.Location = new System.Drawing.Point(175, 442);
+            this.cmbSalesFilter.Name = "cmbSalesFilter";
+            this.cmbSalesFilter.Size = new System.Drawing.Size(121, 24);
+            this.cmbSalesFilter.TabIndex = 10;
+            this.cmbSalesFilter.Visible = false;
             // 
-            // lblQuantitySold
+            // lblSalesFilter
             // 
-            this.lblQuantitySold.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantitySold.Location = new System.Drawing.Point(150, 330);
-            this.lblQuantitySold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblQuantitySold.Name = "lblQuantitySold";
-            this.lblQuantitySold.Size = new System.Drawing.Size(500, 30);
-            this.lblQuantitySold.TabIndex = 8;
-            this.lblQuantitySold.Text = "Quantity Sold: ";
-            this.lblQuantitySold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
+            this.lblSalesFilter.AutoSize = true;
+            this.lblSalesFilter.Location = new System.Drawing.Point(175, 424);
+            this.lblSalesFilter.Name = "lblSalesFilter";
+            this.lblSalesFilter.Size = new System.Drawing.Size(36, 16);
+            this.lblSalesFilter.TabIndex = 6;
+            this.lblSalesFilter.Text = "Filter";
+            this.lblSalesFilter.Visible = false;
+            // 
+            // btnSeeSaleInfo
+            // 
+            this.btnSeeSaleInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnSeeSaleInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSeeSaleInfo.FlatAppearance.BorderSize = 0;
+            this.btnSeeSaleInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeeSaleInfo.ForeColor = System.Drawing.Color.White;
+            this.btnSeeSaleInfo.Location = new System.Drawing.Point(320, 439);
+            this.btnSeeSaleInfo.Name = "btnSeeSaleInfo";
+            this.btnSeeSaleInfo.Size = new System.Drawing.Size(100, 30);
+            this.btnSeeSaleInfo.TabIndex = 3;
+            this.btnSeeSaleInfo.Text = "See Info";
+            this.btnSeeSaleInfo.UseVisualStyleBackColor = false;
+            this.btnSeeSaleInfo.Visible = false;
+            this.btnSeeSaleInfo.Click += new System.EventHandler(this.btnSeeSaleInfo_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.panelLeft.Controls.Add(this.btnHome);
+            this.panelLeft.Controls.Add(this.picLogo);
+            this.panelLeft.Controls.Add(this.btnReports);
+            this.panelLeft.Controls.Add(this.btnLogout);
+            this.panelLeft.Controls.Add(this.btnStock);
+            this.panelLeft.Controls.Add(this.btnClients);
+            this.panelLeft.Controls.Add(this.btnSales);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(227, 554);
+            this.panelLeft.TabIndex = 0;
+            // 
+            // btnHome
+            // 
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnHome.ForeColor = System.Drawing.Color.White;
+            this.btnHome.Location = new System.Drawing.Point(0, 149);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(267, 37);
+            this.btnHome.TabIndex = 11;
+            this.btnHome.Text = "Home";
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // picLogo
+            // 
+            this.picLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picLogo.Image = global::ManagementSystem.Properties.Resources.open_book;
+            this.picLogo.Location = new System.Drawing.Point(0, 0);
+            this.picLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(227, 123);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 10;
+            this.picLogo.TabStop = false;
+            // 
+            // btnReports
+            // 
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnReports.ForeColor = System.Drawing.Color.White;
+            this.btnReports.Location = new System.Drawing.Point(0, 342);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(267, 37);
+            this.btnReports.TabIndex = 9;
+            this.btnReports.Text = "Reports";
+            this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(0, 517);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(227, 37);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
+            // panelTop
+            // 
+            this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.panelTop.Controls.Add(this.lblTime);
+            this.panelTop.Controls.Add(this.lblWelcome);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(227, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(840, 62);
+            this.panelTop.TabIndex = 1;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblTime.ForeColor = System.Drawing.Color.White;
+            this.lblTime.Location = new System.Drawing.Point(640, 0);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(200, 62);
+            this.lblTime.TabIndex = 2;
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblWelcome.ForeColor = System.Drawing.Color.White;
+            this.lblWelcome.Location = new System.Drawing.Point(-5, 14);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(400, 31);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Welcome, SalaAr HuSyN";
+            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnMonthlySalesReport
+            // 
+            this.btnMonthlySalesReport.Location = new System.Drawing.Point(20, 20);
+            this.btnMonthlySalesReport.Name = "btnMonthlySalesReport";
+            this.btnMonthlySalesReport.Size = new System.Drawing.Size(250, 40);
+            this.btnMonthlySalesReport.TabIndex = 0;
+            this.btnMonthlySalesReport.Text = "Monthly Sales Report";
+            this.btnMonthlySalesReport.UseVisualStyleBackColor = true;
+            this.btnMonthlySalesReport.Click += new System.EventHandler(this.BtnMonthlySalesReport_Click);
+            this.btnMonthlySalesReport.Visible = false;
+            this.btnMonthlySalesReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnMonthlySalesReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMonthlySalesReport.FlatAppearance.BorderSize = 0;
+            this.btnMonthlySalesReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMonthlySalesReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // btnSalesByCategoryReport
+            // 
+            this.btnSalesByCategoryReport.Location = new System.Drawing.Point(300, 20);
+            this.btnSalesByCategoryReport.Name = "btnSalesByCategoryReport";
+            this.btnSalesByCategoryReport.Size = new System.Drawing.Size(250, 40);
+            this.btnSalesByCategoryReport.TabIndex = 1;
+            this.btnSalesByCategoryReport.Text = "Monthly Genre Report";
+            this.btnSalesByCategoryReport.UseVisualStyleBackColor = true;
+            this.btnSalesByCategoryReport.Click += new System.EventHandler(this.BtnSalesByCategoryReport_Click);
+            this.btnSalesByCategoryReport.Visible = false;
+            this.btnSalesByCategoryReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnSalesByCategoryReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalesByCategoryReport.FlatAppearance.BorderSize = 0;
+            this.btnSalesByCategoryReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalesByCategoryReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // btnCustomerReport
+            // 
+            this.btnCustomerReport.Location = new System.Drawing.Point(580, 20);
+            this.btnCustomerReport.Name = "btnCustomerReport";
+            this.btnCustomerReport.Size = new System.Drawing.Size(250, 40);
+            this.btnCustomerReport.TabIndex = 2;
+            this.btnCustomerReport.Text = "Monthly Clients Report";
+            this.btnCustomerReport.UseVisualStyleBackColor = true;
+            this.btnCustomerReport.Click += new System.EventHandler(this.BtnCustomerReport_Click);
+            this.btnCustomerReport.Visible = false;
+            this.btnCustomerReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnCustomerReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomerReport.FlatAppearance.BorderSize = 0;
+            this.btnCustomerReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomerReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // btnBestSellingProductsReport
+            // 
+            this.btnBestSellingProductsReport.Location = new System.Drawing.Point(20, 80);
+            this.btnBestSellingProductsReport.Name = "btnBestSellingProductsReport";
+            this.btnBestSellingProductsReport.Size = new System.Drawing.Size(250, 40);
+            this.btnBestSellingProductsReport.TabIndex = 3;
+            this.btnBestSellingProductsReport.Text = "Most Sold Book Report";
+            this.btnBestSellingProductsReport.UseVisualStyleBackColor = true;
+            this.btnBestSellingProductsReport.Click += new System.EventHandler(this.BtnBestSellingProductsReport_Click);
+            this.btnBestSellingProductsReport.Visible = false;
+            this.btnBestSellingProductsReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnBestSellingProductsReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBestSellingProductsReport.FlatAppearance.BorderSize = 0;
+            this.btnBestSellingProductsReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBestSellingProductsReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // btnRevenueReport
+            // 
+            this.btnRevenueReport.Location = new System.Drawing.Point(300, 80);
+            this.btnRevenueReport.Name = "btnRevenueReport";
+            this.btnRevenueReport.Size = new System.Drawing.Size(250, 40);
+            this.btnRevenueReport.TabIndex = 4;
+            this.btnRevenueReport.Text = "Revenue Report";
+            this.btnRevenueReport.UseVisualStyleBackColor = true;
+            this.btnRevenueReport.Click += new System.EventHandler(this.BtnRevenueReport_Click);
+            this.btnRevenueReport.Visible = false;
+            this.btnRevenueReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnRevenueReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRevenueReport.FlatAppearance.BorderSize = 0;
+            this.btnRevenueReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRevenueReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // btnStockReport
+            // 
+            this.btnStockReport.Location = new System.Drawing.Point(580, 80);
+            this.btnStockReport.Name = "btnStockReport";
+            this.btnStockReport.Size = new System.Drawing.Size(250, 40);
+            this.btnStockReport.TabIndex = 5;
+            this.btnStockReport.Text = "Stock Report";
+            this.btnStockReport.UseVisualStyleBackColor = true;
+            this.btnStockReport.Click += new System.EventHandler(this.BtnStockReport_Click);
+            this.btnStockReport.Visible = false;
+            this.btnStockReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btnStockReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStockReport.FlatAppearance.BorderSize = 0;
+            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockReport.ForeColor = System.Drawing.Color.White;
+            // 
+            // lvReport
+            // 
+            this.lvReport.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chReportHeader1,
+            this.chReportHeader2});
+            this.lvReport.FullRowSelect = true;
+            this.lvReport.GridLines = true;
+            this.lvReport.Location = new System.Drawing.Point(50, 150);
+            this.lvReport.Name = "lvReport";
+            this.lvReport.Size = new System.Drawing.Size(740, 320);
+            this.lvReport.TabIndex = 6;
+            this.lvReport.UseCompatibleStateImageBehavior = false;
+            this.lvReport.View = System.Windows.Forms.View.Details;
+            this.lvReport.Visible = false;
+            // 
+            // chReportHeader1
+            // 
+            this.chReportHeader1.Text = "";
+            this.chReportHeader1.Width = 240;
+            // 
+            // chReportHeader2
+            // 
+            this.chReportHeader2.Text = "";
+            this.chReportHeader2.Width = 240;
+            // 
+            // panelMain
+            // 
+            this.panelMain.Controls.Add(this.lvClients);
+            this.panelMain.Controls.Add(this.lvStock);
+            this.panelMain.Controls.Add(this.lvSales);
+            this.panelMain.Controls.Add(this.lblSearch);
+            this.panelMain.Controls.Add(this.txtSearch);
+            this.panelMain.Controls.Add(this.btnSearch);
+            this.panelMain.Controls.Add(this.btnAddStock);
+            this.panelMain.Controls.Add(this.lblStockSearch);
+            this.panelMain.Controls.Add(this.txtStockSearch);
+            this.panelMain.Controls.Add(this.btnStockSearch);
+            this.panelMain.Controls.Add(this.btnAddClient);
+            this.panelMain.Controls.Add(this.btnEditClient);
+            this.panelMain.Controls.Add(this.btnRemoveClient);
+            this.panelMain.Controls.Add(this.lblCustomersDescription);
+            this.panelMain.Controls.Add(this.lblRevenueDescription);
+            this.panelMain.Controls.Add(this.lblSoldBooksDescription);
+            this.panelMain.Controls.Add(this.lblCustomers);
+            this.panelMain.Controls.Add(this.lblRevenue);
+            this.panelMain.Controls.Add(this.lblSoldBooks);
+            this.panelMain.Controls.Add(this.lblBookOfTheMonth);
+            this.panelMain.Controls.Add(this.lblBookTitle);
+            this.panelMain.Controls.Add(this.lblQuantitySold);
+            this.panelMain.Controls.Add(this.lblStockFilter);
+            this.panelMain.Controls.Add(this.cmbStockFilter);
+            this.panelMain.Controls.Add(this.lblSalesFilter);
+            this.panelMain.Controls.Add(this.cmbSalesFilter);
+            this.panelMain.Controls.Add(this.btnAddSales);
+            this.panelMain.Controls.Add(this.btnSeeSaleInfo);
+            this.panelMain.Controls.Add(this.btnMonthlySalesReport);
+            this.panelMain.Controls.Add(this.btnSalesByCategoryReport);
+            this.panelMain.Controls.Add(this.btnCustomerReport);
+            this.panelMain.Controls.Add(this.btnBestSellingProductsReport);
+            this.panelMain.Controls.Add(this.btnRevenueReport);
+            this.panelMain.Controls.Add(this.btnStockReport);
+            this.panelMain.Controls.Add(this.lvReport);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(227, 62);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(840, 492);
+            this.panelMain.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -849,7 +978,6 @@ namespace ManagementSystem.Pages.Dashboard
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.ResumeLayout(false);
-
         }
     }
 }

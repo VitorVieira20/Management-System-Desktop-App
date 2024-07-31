@@ -188,6 +188,7 @@
     <Compile Include="Pages\ClientForms\AddClientForm.Designer.cs">
       <DependentUpon>AddClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Dashboard\ReportManager.cs" />
     <Compile Include="Pages\SalesForms\AddSalesForm.cs">
       <SubType>Form</SubType>
     </Compile>

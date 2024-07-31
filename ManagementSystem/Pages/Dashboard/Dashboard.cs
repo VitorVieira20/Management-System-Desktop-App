@@ -1,6 +1,7 @@
 ﻿using ManagementSystem.Pages.SalesForms;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -81,7 +82,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             ClientManager.LoadClients(lvClients);
             UIHelper.ShowComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch);
-            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo, btnMonthlySalesReport, btnSalesByCategoryReport, btnCustomerReport, btnBestSellingProductsReport, btnRevenueReport, btnStockReport, lvReport);
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             StockManager.LoadStock(lvStock);
             UIHelper.ShowComponents(lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter ,cmbStockFilter);
-            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo, btnMonthlySalesReport, btnSalesByCategoryReport, btnCustomerReport, btnBestSellingProductsReport, btnRevenueReport, btnStockReport, lvReport);
             DatabaseHelper.CheckLowStock(lvStock);
             cmbStockFilter.SelectedIndexChanged += cmbStockFilter_SelectedIndexChanged;
         }
@@ -103,8 +104,14 @@ namespace ManagementSystem.Pages.Dashboard
         {
             SalesManager.LoadSales(lvSales);
             UIHelper.ShowComponents(btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
-            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnMonthlySalesReport, btnSalesByCategoryReport, btnCustomerReport, btnBestSellingProductsReport, btnRevenueReport, btnStockReport, lvReport);
             cmbSalesFilter.SelectedIndexChanged += cmbSalesFilter_SelectedIndexChanged;
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            UIHelper.ShowComponents(btnMonthlySalesReport, btnSalesByCategoryReport, btnCustomerReport, btnBestSellingProductsReport, btnRevenueReport, btnStockReport, lvReport);
+            UIHelper.HideComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold, lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
         }
 
         /// <summary>
@@ -114,7 +121,7 @@ namespace ManagementSystem.Pages.Dashboard
         {
             UpdateDashboardData();
             UIHelper.ShowComponents(lblSoldBooksDescription, lblRevenueDescription, lblCustomersDescription, lblSoldBooks, lblRevenue, lblCustomers, lblBookOfTheMonth, lblBookTitle, lblQuantitySold);
-            UIHelper.HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo);
+            UIHelper.HideComponents(lvClients, btnAddClient, btnEditClient, btnRemoveClient, lblSearch, txtSearch, btnSearch, lvStock, btnAddStock, lblStockSearch, txtStockSearch, btnStockSearch, lblStockFilter, cmbStockFilter, btnAddSales, lvSales, lblSalesFilter, cmbSalesFilter, btnSeeSaleInfo, btnMonthlySalesReport, btnSalesByCategoryReport, btnCustomerReport, btnBestSellingProductsReport, btnRevenueReport, btnStockReport, lvReport);
         }
 
         /// <summary>
@@ -280,5 +287,89 @@ namespace ManagementSystem.Pages.Dashboard
             loginForm.Show();
             this.Close();
         }
+
+        private void BtnMonthlySalesReport_Click(object sender, EventArgs e)
+        {
+            var data = ReportManager.GetMonthlySalesData();
+            ReportManager.PopulateReport(data, lvReport);
+            ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Revenue");
+        }
+
+        private void BtnSalesByCategoryReport_Click(object sender, EventArgs e)
+        {
+            var data = GetSalesByCategoryData();
+            ReportManager.PopulateReport(data, lvReport);
+        }
+
+        private void BtnCustomerReport_Click(object sender, EventArgs e)
+        {
+            var data = GetCustomerData();
+            ReportManager.PopulateReport(data, lvReport);
+        }
+
+        private void BtnBestSellingProductsReport_Click(object sender, EventArgs e)
+        {
+            var data = GetBestSellingProductsData();
+            ReportManager.PopulateReport(data, lvReport);
+        }
+
+        private void BtnRevenueReport_Click(object sender, EventArgs e)
+        {
+            var data = GetRevenueData();
+            ReportManager.PopulateReport(data, lvReport);
+        }
+
+        private void BtnStockReport_Click(object sender, EventArgs e)
+        {
+            var data = GetStockData();
+            ReportManager.PopulateReport(data, lvReport);
+        }
+
+        private List<(string, string)> GetSalesByCategoryData()
+        {
+            return new List<(string, string)>
+            {
+                ("Fiction", "5000"),
+                ("Non-Fiction", "3000"),
+                ("Science", "2000"),
+            };
+        }
+
+        private List<(string, string)> GetCustomerData()
+        {
+            return new List<(string, string)>
+            {
+                ("John Doe", "johndoe@example.com"),
+                ("Jane Smith", "janesmith@example.com"),
+            };
+        }
+
+        private List<(string, string)> GetBestSellingProductsData()
+        {
+            return new List<(string, string)>
+            {
+                ("Product A", "500"),
+                ("Product B", "300"),
+            };
+        }
+
+        private List<(string, string)> GetRevenueData()
+        {
+            return new List<(string, string)>
+            {
+                ("Week 1", "10000"),
+                ("Week 2", "12000"),
+            };
+        }
+
+        private List<(string, string)> GetStockData()
+        {
+            return new List<(string, string)>
+            {
+                ("Product A", "150"),
+                ("Product B", "200"),
+            };
+        }
+
     }
 }
