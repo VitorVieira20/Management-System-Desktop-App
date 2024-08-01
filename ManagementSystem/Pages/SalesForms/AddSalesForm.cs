@@ -216,7 +216,7 @@ namespace ManagementSystem
                         itemCmd.ExecuteNonQuery();
 
                         // Update stock in Books table
-                        string updateStockQuery = "UPDATE Stock SET Quantity = Quantity - @Quantity WHERE Id = @BookId";
+                        string updateStockQuery = "UPDATE Stock SET Quantity = Quantity - @Quantity WHERE Book_id = @BookId";
                         MySqlCommand updateStockCmd = new MySqlCommand(updateStockQuery, conn, transaction);
                         updateStockCmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(item.SubItems[2].Text));
                         updateStockCmd.Parameters.AddWithValue("@BookId", Convert.ToInt32(item.SubItems[0].Text));

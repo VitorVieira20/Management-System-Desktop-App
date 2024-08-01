@@ -345,15 +345,6 @@ namespace ManagementSystem.Pages.Dashboard
             };
         }
 
-        private List<(string, string)> GetBestSellingProductsData()
-        {
-            return new List<(string, string)>
-            {
-                ("Product A", "500"),
-                ("Product B", "300"),
-            };
-        }
-
         private List<(string, string)> GetRevenueData()
         {
             return new List<(string, string)>
