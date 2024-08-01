@@ -288,61 +288,64 @@ namespace ManagementSystem.Pages.Dashboard
             this.Close();
         }
 
-        private void BtnMonthlySalesReport_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens the report of monthly sales
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMonthlySalesReport_Click(object sender, EventArgs e)
         {
             var data = ReportManager.GetMonthlySalesData();
             ReportManager.PopulateReport(data, lvReport);
             ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Revenue");
         }
 
-        private void BtnSalesByCategoryReport_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens the report of monthly sales by genre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSalesByCategoryReport_Click(object sender, EventArgs e)
         {
-            var data = GetSalesByCategoryData();
+            var data = ReportManager.GetBestSellingGenreByMonthData();
             ReportManager.PopulateReport(data, lvReport);
+            ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Genre");
         }
 
-        private void BtnCustomerReport_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens the report of monthly sales by client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCustomerReport_Click(object sender, EventArgs e)
         {
-            var data = GetCustomerData();
+            var data = ReportManager.GetBestBuyingClientByMonthData();
             ReportManager.PopulateReport(data, lvReport);
+            ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Client");
         }
 
-        private void BtnBestSellingProductsReport_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens the report of monthly best sellers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBestSellingProductsReport_Click(object sender, EventArgs e)
         {
             var data = ReportManager.GetBestSellingBookByMonthData();
             ReportManager.PopulateReport(data, lvReport);
             ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Book");
         }
 
-        private void BtnRevenueReport_Click(object sender, EventArgs e)
+        private void btnRevenueReport_Click(object sender, EventArgs e)
         {
             var data = GetRevenueData();
             ReportManager.PopulateReport(data, lvReport);
         }
 
-        private void BtnStockReport_Click(object sender, EventArgs e)
+        private void btnStockReport_Click(object sender, EventArgs e)
         {
             var data = GetStockData();
             ReportManager.PopulateReport(data, lvReport);
-        }
-
-        private List<(string, string)> GetSalesByCategoryData()
-        {
-            return new List<(string, string)>
-            {
-                ("Fiction", "5000"),
-                ("Non-Fiction", "3000"),
-                ("Science", "2000"),
-            };
-        }
-
-        private List<(string, string)> GetCustomerData()
-        {
-            return new List<(string, string)>
-            {
-                ("John Doe", "johndoe@example.com"),
-                ("Jane Smith", "janesmith@example.com"),
-            };
         }
 
         private List<(string, string)> GetRevenueData()

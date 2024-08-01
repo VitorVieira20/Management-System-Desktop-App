@@ -801,7 +801,7 @@
             this.btnMonthlySalesReport.TabIndex = 0;
             this.btnMonthlySalesReport.Text = "Monthly Sales Report";
             this.btnMonthlySalesReport.UseVisualStyleBackColor = true;
-            this.btnMonthlySalesReport.Click += new System.EventHandler(this.BtnMonthlySalesReport_Click);
+            this.btnMonthlySalesReport.Click += new System.EventHandler(this.btnMonthlySalesReport_Click);
             this.btnMonthlySalesReport.Visible = false;
             this.btnMonthlySalesReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnMonthlySalesReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -817,7 +817,7 @@
             this.btnSalesByCategoryReport.TabIndex = 1;
             this.btnSalesByCategoryReport.Text = "Monthly Genre Report";
             this.btnSalesByCategoryReport.UseVisualStyleBackColor = true;
-            this.btnSalesByCategoryReport.Click += new System.EventHandler(this.BtnSalesByCategoryReport_Click);
+            this.btnSalesByCategoryReport.Click += new System.EventHandler(this.btnSalesByCategoryReport_Click);
             this.btnSalesByCategoryReport.Visible = false;
             this.btnSalesByCategoryReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnSalesByCategoryReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -833,7 +833,7 @@
             this.btnCustomerReport.TabIndex = 2;
             this.btnCustomerReport.Text = "Monthly Clients Report";
             this.btnCustomerReport.UseVisualStyleBackColor = true;
-            this.btnCustomerReport.Click += new System.EventHandler(this.BtnCustomerReport_Click);
+            this.btnCustomerReport.Click += new System.EventHandler(this.btnCustomerReport_Click);
             this.btnCustomerReport.Visible = false;
             this.btnCustomerReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnCustomerReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -849,7 +849,7 @@
             this.btnBestSellingProductsReport.TabIndex = 3;
             this.btnBestSellingProductsReport.Text = "Most Sold Book Report";
             this.btnBestSellingProductsReport.UseVisualStyleBackColor = true;
-            this.btnBestSellingProductsReport.Click += new System.EventHandler(this.BtnBestSellingProductsReport_Click);
+            this.btnBestSellingProductsReport.Click += new System.EventHandler(this.btnBestSellingProductsReport_Click);
             this.btnBestSellingProductsReport.Visible = false;
             this.btnBestSellingProductsReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnBestSellingProductsReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -865,7 +865,7 @@
             this.btnRevenueReport.TabIndex = 4;
             this.btnRevenueReport.Text = "Revenue Report";
             this.btnRevenueReport.UseVisualStyleBackColor = true;
-            this.btnRevenueReport.Click += new System.EventHandler(this.BtnRevenueReport_Click);
+            this.btnRevenueReport.Click += new System.EventHandler(this.btnRevenueReport_Click);
             this.btnRevenueReport.Visible = false;
             this.btnRevenueReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnRevenueReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -881,7 +881,7 @@
             this.btnStockReport.TabIndex = 5;
             this.btnStockReport.Text = "Stock Report";
             this.btnStockReport.UseVisualStyleBackColor = true;
-            this.btnStockReport.Click += new System.EventHandler(this.BtnStockReport_Click);
+            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
             this.btnStockReport.Visible = false;
             this.btnStockReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.btnStockReport.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -907,12 +907,12 @@
             // chReportHeader1
             // 
             this.chReportHeader1.Text = "";
-            this.chReportHeader1.Width = 240;
+            this.chReportHeader1.Width = 150;
             // 
             // chReportHeader2
             // 
             this.chReportHeader2.Text = "";
-            this.chReportHeader2.Width = 240;
+            this.chReportHeader2.Width = 350;
             // 
             // panelMain
             // 
