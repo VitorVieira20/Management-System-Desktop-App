@@ -105,20 +105,40 @@ namespace ManagementSystem
             }
         }
 
-        private int GetQuantityFromUser()
+        private int GetAvailableQuantity(int bookId)
         {
+            int availableQuantity = 0;
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT Quantity FROM Stock WHERE Book_id = @BookId";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@BookId", bookId);
+                conn.Open();
+                availableQuantity = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            return availableQuantity;
+        }
+
+        private int GetQuantityFromUser(int bookId)
+        {
+            int availableQuantity = GetAvailableQuantity(bookId);
             using (InputBoxForm inputBox = new InputBoxForm("Enter the quantity:"))
             {
                 if (inputBox.ShowDialog() == DialogResult.OK)
                 {
                     if (int.TryParse(inputBox.InputValue, out int quantity) && quantity > 0)
                     {
+                        if (quantity > availableQuantity)
+                        {
+                            MessageBox.Show($"The quantity you entered exceeds the available stock of {availableQuantity}. Please enter a valid quantity.");
+                            return GetQuantityFromUser(bookId);
+                        }
                         return quantity;
                     }
                     else
                     {
                         MessageBox.Show("Invalid quantity. Please enter a valid number greater than 0.");
-                        return GetQuantityFromUser();
+                        return GetQuantityFromUser(bookId);
                     }
                 }
                 else
@@ -128,6 +148,7 @@ namespace ManagementSystem
             }
         }
 
+
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
             if (lvBooks.SelectedItems.Count > 0)
@@ -136,7 +157,7 @@ namespace ManagementSystem
                 int bookId = Convert.ToInt32(selectedItem.SubItems[0].Text);
                 string title = selectedItem.SubItems[1].Text;
                 decimal price = Convert.ToDecimal(selectedItem.SubItems[4].Text);
-                int quantity = GetQuantityFromUser();
+                int quantity = GetQuantityFromUser(bookId);
 
                 if (quantity > 0)
                 {
@@ -160,6 +181,7 @@ namespace ManagementSystem
                 MessageBox.Show("Please select a book to add to cart.");
             }
         }
+
 
         private void btnFinalizePurchase_Click(object sender, EventArgs e)
         {
