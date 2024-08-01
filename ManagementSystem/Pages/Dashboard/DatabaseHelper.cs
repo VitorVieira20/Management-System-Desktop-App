@@ -99,7 +99,7 @@ namespace ManagementSystem.Pages.Dashboard
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT SUM(i.quantity) FROM Sales_items i " +
+                    string query = "SELECT COALESCE(SUM(i.quantity), 0) FROM Sales_items i " +
                         "INNER JOIN Sales s ON i.sales_id = s.id " +
                         "WHERE MONTH(s.date) = MONTH(CURRENT_DATE) " +
                         "AND YEAR(s.date) = YEAR(CURRENT_DATE)";
@@ -126,7 +126,7 @@ namespace ManagementSystem.Pages.Dashboard
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT SUM(total_amount) FROM Sales " +
+                    string query = "SELECT COALESCE(SUM(total_amount), 0) FROM Sales " +
                         "WHERE MONTH(date) = MONTH(CURRENT_DATE) " +
                         "AND YEAR(date) = YEAR(CURRENT_DATE)";
                     MySqlCommand cmd = new MySqlCommand(query, conn);

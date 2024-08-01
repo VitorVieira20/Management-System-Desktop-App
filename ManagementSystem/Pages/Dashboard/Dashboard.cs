@@ -309,8 +309,9 @@ namespace ManagementSystem.Pages.Dashboard
 
         private void BtnBestSellingProductsReport_Click(object sender, EventArgs e)
         {
-            var data = GetBestSellingProductsData();
+            var data = ReportManager.GetBestSellingBookByMonthData();
             ReportManager.PopulateReport(data, lvReport);
+            ReportManager.SetColumnsHeaders(chReportHeader1, "Month", chReportHeader2, "Book");
         }
 
         private void BtnRevenueReport_Click(object sender, EventArgs e)

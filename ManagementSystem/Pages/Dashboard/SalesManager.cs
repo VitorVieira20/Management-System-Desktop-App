@@ -111,11 +111,13 @@ namespace ManagementSystem.Pages.Dashboard
         /// <param name="listView">ListView to use.</param>
         private static void SortSalesByDate(bool ascending, ListView listView)
         {
-            var items = listView.Items.Cast<ListViewItem>().OrderBy(item => item.SubItems[2].Text).ToList();
+            var items = listView.Items.Cast<ListViewItem>()
+                .OrderBy(item => DateTime.ParseExact(item.SubItems[2].Text, "dd/MM/yyyy", null))
+                .ToList();
 
             if (!ascending)
             {
-                items = items.AsEnumerable().Reverse().ToList();
+                items.Reverse();
             }
 
             listView.Items.Clear();
