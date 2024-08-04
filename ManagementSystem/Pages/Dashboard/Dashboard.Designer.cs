@@ -76,7 +76,6 @@
         private System.Windows.Forms.Button btnCustomerReport;
         private System.Windows.Forms.Button btnBestSellingProductsReport;
         private System.Windows.Forms.Button btnRevenueReport;
-        private System.Windows.Forms.Button btnStockReport;
 
         private System.Windows.Forms.ListView lvReport;
         private System.Windows.Forms.ColumnHeader chReportHeader1;
@@ -155,7 +154,6 @@
             this.btnCustomerReport = new System.Windows.Forms.Button();
             this.btnBestSellingProductsReport = new System.Windows.Forms.Button();
             this.btnRevenueReport = new System.Windows.Forms.Button();
-            this.btnStockReport = new System.Windows.Forms.Button();
             this.lvReport = new System.Windows.Forms.ListView();
             this.chReportHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chReportHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -873,22 +871,6 @@
             this.btnRevenueReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRevenueReport.ForeColor = System.Drawing.Color.White;
             // 
-            // btnStockReport
-            // 
-            this.btnStockReport.Location = new System.Drawing.Point(580, 80);
-            this.btnStockReport.Name = "btnStockReport";
-            this.btnStockReport.Size = new System.Drawing.Size(250, 40);
-            this.btnStockReport.TabIndex = 5;
-            this.btnStockReport.Text = "Stock Report";
-            this.btnStockReport.UseVisualStyleBackColor = true;
-            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
-            this.btnStockReport.Visible = false;
-            this.btnStockReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.btnStockReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStockReport.FlatAppearance.BorderSize = 0;
-            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockReport.ForeColor = System.Drawing.Color.White;
-            // 
             // lvReport
             // 
             this.lvReport.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -949,7 +931,6 @@
             this.panelMain.Controls.Add(this.btnCustomerReport);
             this.panelMain.Controls.Add(this.btnBestSellingProductsReport);
             this.panelMain.Controls.Add(this.btnRevenueReport);
-            this.panelMain.Controls.Add(this.btnStockReport);
             this.panelMain.Controls.Add(this.lvReport);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(227, 62);
