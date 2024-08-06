@@ -119,4 +119,4 @@ This project consists of a desktop application for a book store, helping the own
 - Check for any missing NuGet packages and restore them if necessary.
 
 ### License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for more details.
